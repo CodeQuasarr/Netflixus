@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0a308cec-713d-405b-940e-5f7c2a06049f" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/todo_list/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/todo_list/src/App.vue" afterDir="false" />
-    </list>
+    <list default="true" id="0a308cec-713d-405b-940e-5f7c2a06049f" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -49,7 +46,7 @@
       <option name="presentableId" value="Default" />
       <updated>1681476587791</updated>
       <workItem from="1681476588813" duration="1134000" />
-      <workItem from="1682001728327" duration="82000" />
+      <workItem from="1682001728327" duration="124000" />
     </task>
     <servers />
   </component>
