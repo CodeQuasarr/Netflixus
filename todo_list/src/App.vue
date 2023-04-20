@@ -1,6 +1,7 @@
 <template>
     <div style="min-height: 100vh" class="container-fluid p-0 m-0">
         <HomeView/>
+        <div></div>
     </div>
 </template>
 
