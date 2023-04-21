@@ -1,27 +1,24 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
+import {createRouter, createWebHistory, RouteRecordRaw} from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import LoginView from "@/views/LoginView.vue";
+import NetflixusTemplate from "@/layouts/NetflixusTemplate.vue";
 
 const routes: Array<RouteRecordRaw> = [
-  { path: '/login', name: 'LOGIN', component: LoginView },
-  {
-    path: '/',
-    name: 'home',
-    component: HomeView
-  },
-  {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
-  }
+    {path: '/login', name: 'LOGIN', component: LoginView},
+    {
+        path: '/',
+      redirect: '/',
+      component: NetflixusTemplate,
+      children: [
+            {path: '/', name: 'HOME', component: HomeView},
+        ]
+    },
+    // { path: "/:pathMatch(.*)*", name: "NOT_FOUND", component: PageNotFoundVew },
 ]
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
-  routes
+    history: createWebHistory(process.env.BASE_URL),
+    routes
 })
 
 export default router
