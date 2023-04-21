@@ -11,17 +11,21 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li class="nav-item" v-for="(link, index) in links" :key="`link-${index}`">
-                                <RouterLink :to="link.path" class="nav-link active" aria-current="page">
-                                    {{ link.name }}
-                                </RouterLink>
+                            <li class="nav-item" v-for="link in links" :key="`link-${link.index}`">
+                                <template v-if="link.index === 5 && $store.getters.isAuthenticated">
+                                    <RouterLink :to="link.path" class="nav-link active" aria-current="page"> {{ link.name }} </RouterLink>
+                                </template>
+                                <template v-if="link.index !== 5">
+                                    <RouterLink :to="link.path" class="nav-link active" aria-current="page"> {{ link.name }} </RouterLink>
+                                </template>
+
                             </li>
                         </ul>
                         <div class="d-flex" role="search">
                             <input class="form-control me-2" type="search" placeholder="Titre, Personnage, Genre" aria-label="Search">
                             <button class="btn btn-outline-danger" type="submit"> <font-icon icon="close" /> </button>
                         </div>
-                        <div class="dropdown">
+                        <div v-if="$store.getters.isAuthenticated" class="dropdown">
                             <button class="btn btn-link dropdown-toggle text-decoration-none text-uppercase text-white" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Samsoniteuu
                             </button>
@@ -39,21 +43,22 @@
     </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from "vue";
+export default defineComponent({
     name: "TheHeader",
     data() {
         return {
             links: [
-                {name: "Acceuil", path: "/"},
-                {name: "Films", path: "/"},
-                {name: "Series", path: "/"},
-                {name: "Nouvautés", path: "/"},
-                {name: "Ma Listes", path: "/"},
+                {index: 1, name: "Acceuil",   path: "/"},
+                {index: 2, name: "Films",     path: "/movies"},
+                {index: 3, name: "Series",    path: "/series"},
+                {index: 4, name: "Nouvautés", path: "/latest"},
+                {index: 5, name: "Ma Listes", path: "/favory"},
             ]
         };
     },
-}
+});
 </script>
 
 <style scoped>
@@ -78,5 +83,9 @@ export default {
 .nav-link:hover, .dropdown-item:hover {
     color: #b3b3b3 !important;
     text-decoration: none solid rgb(179, 179, 179);
+}
+a.router-link-active {
+    color: #e50914 !important;
+    text-decoration: none solid rgb(229, 9, 20);
 }
 </style>

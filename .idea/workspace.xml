@@ -7,6 +7,7 @@
     <list default="true" id="0a308cec-713d-405b-940e-5f7c2a06049f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/netflixus_app/src/components/TheHeader.vue" beforeDir="false" afterPath="$PROJECT_DIR$/netflixus_app/src/components/TheHeader.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/netflixus_app/src/store/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/netflixus_app/src/store/index.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,7 +71,7 @@
       <updated>1681476587791</updated>
       <workItem from="1681476588813" duration="1134000" />
       <workItem from="1682001728327" duration="124000" />
-      <workItem from="1682004721496" duration="17302000" />
+      <workItem from="1682004721496" duration="19922000" />
     </task>
     <servers />
   </component>
