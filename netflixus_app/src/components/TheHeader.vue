@@ -29,7 +29,7 @@
                                 <li> <RouterLink to="/" class="dropdown-item" href="#">Compte</RouterLink></li>
                                 <li> <RouterLink to="/" class="dropdown-item" href="#">Aide</RouterLink></li>
                                 <li><hr class="dropdown-divider bg-danger"></li>
-                                <li><a class="dropdown-item" href="#">Se Déconnecter</a></li>
+                                <li><button class=" btn btn-black dropdown-item" href="#">Se Déconnecter</button></li>
                             </ul>
                         </div>
                     </div>
