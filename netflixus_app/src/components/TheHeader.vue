@@ -63,7 +63,7 @@ export default defineComponent({
 
 <style scoped>
 .bg-netflixus-dark {
-    background-color: #0C0C0C !important;
+    background-color: #060D17 !important;
 }
 .navbar-brand {
     font-family: 'Martian Mono', monospace;

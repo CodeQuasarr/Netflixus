@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div style="background-color: #060D17; min-height: 100vh">
         <RouterView />
     </div>
 

@@ -25,6 +25,7 @@ declare module "@vue/runtime-core" {
         $store: typeof store;
     }
 }
+app.config.globalProperties.MDBT_API_KEY = "b8b3e66e9192eeaa12e7e90dd87d7dd2";
 app
     .component("font-icon", FontAwesomeIcon)
     .use(store)
