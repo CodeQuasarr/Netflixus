@@ -92,7 +92,7 @@ export default defineComponent({
     },
 });
 </script>
-<style>
+<style scoped>
 .swiper-slide {
     transition: 250ms all;
 }

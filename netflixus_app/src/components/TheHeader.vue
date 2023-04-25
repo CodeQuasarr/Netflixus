@@ -22,8 +22,23 @@
                             </li>
                         </ul>
                         <div class="d-flex" role="search">
-                            <input class="form-control me-2" type="search" placeholder="Titre, Personnage, Genre" aria-label="Search">
-                            <button class="btn btn-outline-danger" type="submit"> <font-icon icon="close" /> </button>
+                            <input
+                                    class="form-control me-2"
+                                    type="search"
+                                    placeholder="Titre, Personnage, Genre"
+                                    aria-label="Search"
+                                    v-model="searchQuery"
+                                    @focus="openSearch()"
+                                    @input="onInput"
+                            />
+                            <button
+                                    v-if="searchBarIsOpen"
+                                    class="btn btn-outline-danger"
+                                    type="button"
+                                    @click="closeSearch()"
+                            >
+                                <font-icon icon="close" />
+                            </button>
                         </div>
                         <div v-if="$store.getters.isAuthenticated" class="dropdown">
                             <button class="btn btn-link dropdown-toggle text-decoration-none text-uppercase text-white" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -45,8 +60,20 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import MovieService from "@/helpers/services/Movie.service";
+import { MovieDetails } from "@/helpers/types/MovieType";
 export default defineComponent({
     name: "TheHeader",
+    props: {
+        searchBarIsOpen: {
+            type: Boolean,
+            default: false,
+        },
+        searchResults: {
+            type: Object,
+            default: () => ({}),
+        },
+    },
     data() {
         return {
             links: [
@@ -55,8 +82,59 @@ export default defineComponent({
                 {index: 3, name: "Series",    path: "/series"},
                 {index: 4, name: "Nouvautés", path: "/latest"},
                 {index: 5, name: "Ma Listes", path: "/favory"},
-            ]
+            ],
+            searchQuery: "",
+            results: {} as MovieDetails,
+            timeout: 0
         };
+    },
+    methods: {
+        onInput() {
+            // Clear the previous timeout if there is one
+            if (this.timeout) {
+                clearTimeout(this.timeout);
+            }
+
+            // Set a new timeout to submit the input after 2 seconds
+            this.timeout = setTimeout(() => {
+                //this.handleSearch();
+            }, 300);
+        },
+        openSearch() {
+            if (!this.searchBarIsOpen) {
+                this.$emit("search-bar-toggle", true);
+            }
+        },
+        closeSearch() {
+            if (this.searchBarIsOpen) {
+                this.searchQuery = "";
+                this.$emit("search-bar-toggle", false);
+                this.$emit("search", "");
+            }
+        },
+        handleSearch(query: string) {
+            console.log(this.searchQuery)
+            MovieService.getMoviesByQuery(query)
+                .then((response: MovieDetails) => {
+                    this.results = response;
+                    this.$emit("search-results", response);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        },
+    },
+    watch: {
+        searchQuery(newQuery: string) {
+            console.log(newQuery)
+            if (newQuery.length === 0) {
+                console.log('newQuery')
+                this.$emit("search", '');
+            } else {
+                this.handleSearch(newQuery);
+                this.$emit("search", newQuery);
+            }
+        },
     },
 });
 </script>

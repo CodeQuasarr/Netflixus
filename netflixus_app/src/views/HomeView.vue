@@ -20,16 +20,23 @@ export default defineComponent({
         };
     },
     methods: {
-        getMoviesPoster() {
-            MovieService.getMovieByGenders().then((response: MovieDetailsWithGenre[]) => {
-                this.posters = response;
-            }).catch((error) => {
-                console.log(error);
-            });
+        /**
+         * @description Fetch posters by genre from API and save them in the store
+         * @returns void
+         */
+        getPosters(): void {
+            if (this.$store.getters.posters.length === 0) {
+                MovieService.getMovieByGenders().then((response: MovieDetailsWithGenre[]) => {
+                    this.$store.dispatch('addAllPosters', response);
+                    this.posters = response;
+                });
+            } else {
+                this.posters = this.$store.getters.posters;
+            }
         },
     },
     mounted() {
-        this.getMoviesPoster();
+        this.getPosters();
     }
 });
 </script>

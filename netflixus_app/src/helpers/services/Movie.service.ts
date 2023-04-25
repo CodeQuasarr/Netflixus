@@ -3,23 +3,18 @@ import axiosInstance from "@/axios";
 import {Helpers} from "@/helpers/index.service";
 
 class MovieService {
-
-    async getMoviesPoster(): Promise<MovieDetails[]> {
-        const allMoviesByGenre: MovieDetails[] = [];
-        for (const genre of Helpers.genreList) {
-            const { data }: { data: MovieDetails } = await axiosInstance.get(
-                `/discover/movie?api_key=${process.env.VUE_APP_API_KEY}&language=fr-FR&&page=10&with_genres=${genre.id}`
-            );
-            allMoviesByGenre.push(data);
-        }
-        return allMoviesByGenre;
+    async getMoviesByQuery(query: string): Promise<MovieDetails> {
+        const { data }: { data: MovieDetails } = await axiosInstance.get(
+            `/search/movie?api_key=${process.env.VUE_APP_API_KEY}&language=fr-FR&include_adult=false&query=${query}`
+        );
+        return data;
     }
 
     async getMovieByGenders(): Promise<MovieDetailsWithGenre[]> {
         const allMoviesByGenres: MovieDetailsWithGenre[] = [];
         for (const genre of Helpers.genreList) {
             const { data }: { data: MovieDetails } = await axiosInstance.get(
-                `/discover/movie?api_key=${process.env.VUE_APP_API_KEY}&language=fr-FR&&page=${Math.floor(Math.random() * 8) + 10}&with_genres=${genre.id}`
+                `/discover/movie?api_key=${process.env.VUE_APP_API_KEY}&language=fr-FR&&page=${13}&with_genres=${genre.id}`
             );
             if (data.results) {
                 allMoviesByGenres.push({

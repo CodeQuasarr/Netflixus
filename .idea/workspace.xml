@@ -5,20 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0a308cec-713d-405b-940e-5f7c2a06049f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/netflixus_app/.env" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/netflixus_app/src/components/posters/ThePosterCard.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/netflixus_app/src/components/posters/ThePosterItem.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/netflixus_app/src/components/posters/ThePosterItems.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/netflixus_app/src/helpers/index.service.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/netflixus_app/src/helpers/services/Movie.service.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/netflixus_app/src/helpers/types/MovieType.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/netflixus_app/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/netflixus_app/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/netflixus_app/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/netflixus_app/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/netflixus_app/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/netflixus_app/src/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/netflixus_app/src/axios/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/netflixus_app/src/axios/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/netflixus_app/src/components/TheHeader.vue" beforeDir="false" afterPath="$PROJECT_DIR$/netflixus_app/src/components/TheHeader.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/netflixus_app/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/netflixus_app/src/main.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/netflixus_app/src/components/posters/ThePosterCard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/netflixus_app/src/components/posters/ThePosterCard.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/netflixus_app/src/helpers/services/Movie.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/netflixus_app/src/helpers/services/Movie.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/netflixus_app/src/layouts/NetflixusTemplate.vue" beforeDir="false" afterPath="$PROJECT_DIR$/netflixus_app/src/layouts/NetflixusTemplate.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/netflixus_app/src/store/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/netflixus_app/src/store/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/netflixus_app/src/views/HomeView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/netflixus_app/src/views/HomeView.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -100,7 +92,7 @@
       <workItem from="1682004721496" duration="19922000" />
       <workItem from="1682074832646" duration="10208000" />
       <workItem from="1682085443881" duration="6184000" />
-      <workItem from="1682355560639" duration="14873000" />
+      <workItem from="1682355560639" duration="36209000" />
     </task>
     <servers />
   </component>
