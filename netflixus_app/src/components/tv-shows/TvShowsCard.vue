@@ -6,7 +6,7 @@
             </div>
         </div>
         <ThePagination
-            :movies="movies"
+            :tvShows="tvShows"
             @page-clicked="onClickHandler"
         />
     </div>

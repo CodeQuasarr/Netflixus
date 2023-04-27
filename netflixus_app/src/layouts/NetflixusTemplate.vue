@@ -10,7 +10,10 @@
 
         <div style="margin-top: 85px !important;" class="container-fluid m-0 px-0 text-white">
             <template v-if="$store.getters.searchBarIsOpen">
-                <TheMoviesCard :movies="searchResults"/>
+                <TvShowsCard :tv-shows="searchResults"
+                             v-if="$route.path.name=== '/tv-shows'"/>
+                <TheMoviesCard :movies="searchResults"
+                               v-else/>
             </template>
             <template v-else>
                 <RouterView/>
@@ -23,12 +26,13 @@
 <script lang="ts">
 import {defineComponent} from "vue";
 import TheHeader from "@/components/TheHeader.vue";
-import TheMoviesCard from "@/components/posters/TheMoviesCard.vue";
 import {MovieDetails} from "@/helpers/types/MovieType";
+import TvShowsCard from "@/components/tv-shows/TvShowsCard.vue";
+import TheMoviesCard from "@/components/posters/TheMoviesCard.vue";
 
 export default defineComponent({
     name: "NetflixusTemplate",
-    components: {TheMoviesCard, TheHeader},
+    components: {TheMoviesCard, TvShowsCard, TheHeader},
     data() {
         return {
             searchBarIsOpen: false,
