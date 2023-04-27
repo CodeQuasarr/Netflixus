@@ -6,16 +6,22 @@ export default createStore({
     state: {
         user: {} as User,
         token: null as string | null,
-        // Movies
-        posters: [] as MovieDetailsWithGenre[]
+        // Posters
+        posters: [] as MovieDetailsWithGenre[],
+        searchBarState: false,
     },
     getters: {
         isAuthenticated: (state) => {
             return state.token !== null;
         },
         posters: (state) => state.posters,
+        searchBarIsOpen: (state) => state.searchBarState,
     },
     mutations: {
+        setSearchBarState(state, value: boolean) {
+            state.searchBarState = value;
+            console.log("aaaaaaaaaaabbbbbbbbbbb", state.searchBarState)
+        },
         // Posters on the homepage by genres
         setPostersByGenre(state, posters: MovieDetailsWithGenre[]) {
             state.posters = posters;

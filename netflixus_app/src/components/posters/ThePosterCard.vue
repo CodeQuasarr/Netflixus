@@ -35,16 +35,7 @@
                     v-for="(poster, index) in posters.results" :key="`poster-action-${index}`"
                     style="height: 270px" class="poster-img position-relative"
             >
-                <div>
-                    <div @mouseover="poster.isHover = true" @mouseleave="poster.isHover = false" class="swiper-slide-overlay">
-                        <div class="position-absolute top-50 start-50 translate-middle">
-                            <button v-if="poster.isHover" class="btn btn-sm btn-warning "><i class="fas fa-tv"></i> Regarder</button>
-                        </div>
-                    </div>
-                    <img v-if="poster.poster_path" :src="`https://image.tmdb.org/t/p/w500${poster.poster_path}`" class="img-fluid" alt="...">
-                </div>
-
-
+                <THeMovieItem :poster="poster"/>
             </swiper-slide>
         </swiper>
     </div>
@@ -64,10 +55,12 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import {MovieDetailsWithGenre} from "@/helpers/types/MovieType";
+import THeMovieItem from "@/components/posters/THeMovieItem.vue";
 
 export default defineComponent({
     name: 'ThePosterCard',
     components: {
+        THeMovieItem,
         Swiper,
         SwiperSlide,
     },

@@ -13,10 +13,10 @@
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li class="nav-item" v-for="link in links" :key="`link-${link.index}`">
                                 <template v-if="link.index === 5 && $store.getters.isAuthenticated">
-                                    <RouterLink :to="link.path" class="nav-link active" aria-current="page"> {{ link.name }} </RouterLink>
+                                    <RouterLink :to="link.path" class="nav-link"> {{ link.name }} </RouterLink>
                                 </template>
                                 <template v-if="link.index !== 5">
-                                    <RouterLink :to="link.path" class="nav-link active" aria-current="page"> {{ link.name }} </RouterLink>
+                                    <RouterLink :to="link.path" class="nav-link"> {{ link.name }} </RouterLink>
                                 </template>
 
                             </li>
@@ -103,12 +103,14 @@ export default defineComponent({
         openSearch() {
             if (!this.searchBarIsOpen) {
                 this.$emit("search-bar-toggle", true);
+                this.$store.commit("setSearchBarState", true);
             }
         },
         closeSearch() {
             if (this.searchBarIsOpen) {
                 this.searchQuery = "";
                 this.$emit("search-bar-toggle", false);
+                this.$store.commit("setSearchBarState", false);
                 this.$emit("search", "");
             }
         },
