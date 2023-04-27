@@ -1,17 +1,19 @@
 <template>
     <div class="poster-img">
-        <div @mouseover="posterIsHoverID = poster.id" @mouseleave="posterIsHoverID = 0" class="swiper-slide-overlay">
-            <div class="position-absolute top-50 start-50 translate-middle">
-                <RouterLink
-                        v-if="posterIsHoverID === poster.id"
-                        :to="{ name: 'MOVIES_ID', params: { id: this.poster.id } }"
-                        class="btn btn-sm btn-warning "
-                >
-                    <i class="fas fa-tv"></i> Regarder
-                </RouterLink>
+        <div class="d-none d-md-block">
+            <div @touchstart="posterIsHoverID = poster.id" @mouseover="posterIsHoverID = poster.id" @mouseleave="posterIsHoverID = 0" class="swiper-slide-overlay">
+                <div class="position-absolute top-50 start-50 translate-middle">
+                    <RouterLink
+                            v-if="posterIsHoverID === poster.id"
+                            :to="{ name: 'MOVIES_ID', params: { id: this.poster.id } }"
+                            class="btn btn-sm btn-warning "
+                    >
+                        <i class="fas fa-tv"></i> Regarder
+                    </RouterLink>
+                </div>
             </div>
+            <img v-if="poster.poster_path" :src="`https://image.tmdb.org/t/p/w500${poster.poster_path}`" class="img-fluid" alt="...">
         </div>
-        <img v-if="poster.poster_path" :src="`https://image.tmdb.org/t/p/w500${poster.poster_path}`" class="img-fluid" alt="...">
     </div>
 </template>
 
