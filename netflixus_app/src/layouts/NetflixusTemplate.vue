@@ -24,6 +24,7 @@
 import {defineComponent} from "vue";
 import TheHeader from "@/components/TheHeader.vue";
 import TheMoviesCard from "@/components/posters/TheMoviesCard.vue";
+import {MovieDetails} from "@/helpers/types/MovieType";
 
 export default defineComponent({
     name: "NetflixusTemplate",
@@ -31,13 +32,13 @@ export default defineComponent({
     data() {
         return {
             searchBarIsOpen: false,
-            searchResults: {},
+            searchResults: {} as MovieDetails,
             search: '',
             currentPage: 1 as number,
         };
     },
     methods: {
-        handleSearchResults(results) {
+        handleSearchResults(results: MovieDetails) {
             return this.searchResults = results;
         }
     },

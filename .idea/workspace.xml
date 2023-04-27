@@ -4,19 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0a308cec-713d-405b-940e-5f7c2a06049f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/netflixus_app/src/components/ThePagination.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/netflixus_app/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/netflixus_app/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/netflixus_app/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/netflixus_app/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/netflixus_app/src/components/posters/TheMoviesCard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/netflixus_app/src/components/posters/TheMoviesCard.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/netflixus_app/src/helpers/services/Movie.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/netflixus_app/src/helpers/services/Movie.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/netflixus_app/src/layouts/NetflixusTemplate.vue" beforeDir="false" afterPath="$PROJECT_DIR$/netflixus_app/src/layouts/NetflixusTemplate.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/netflixus_app/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/netflixus_app/src/main.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/netflixus_app/src/views/movies/IndexView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/netflixus_app/src/views/movies/IndexView.vue" afterDir="false" />
-    </list>
+    <list default="true" id="0a308cec-713d-405b-940e-5f7c2a06049f" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -98,7 +86,7 @@
       <workItem from="1682085443881" duration="6184000" />
       <workItem from="1682355560639" duration="36209000" />
       <workItem from="1682441268173" duration="14094000" />
-      <workItem from="1682548347045" duration="22935000" />
+      <workItem from="1682548347045" duration="23307000" />
     </task>
     <servers />
   </component>

@@ -5,7 +5,10 @@
                 <THeMovieItem :poster="poster"/>
             </div>
         </div>
-        <ThePagination :movies="movies"/>
+        <ThePagination
+                :movies="movies"
+                @page-clicked="onClickHandler"
+        />
     </div>
 </template>
 

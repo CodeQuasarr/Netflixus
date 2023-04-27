@@ -54,8 +54,8 @@ export default defineComponent({
     },
     methods: {
         onClickHandler(page: number) {
-            this.$parent.$parent.currentPage = page;
-            console.log(this.$parent.$parent.currentPage);
+            this.currentPage = page;
+            this.$emit("page-clicked", page);
         },
     },
 });
