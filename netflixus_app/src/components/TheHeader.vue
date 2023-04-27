@@ -73,6 +73,8 @@ import MovieService from "@/helpers/services/Movie.service";
 import {MovieDetails} from "@/helpers/types/MovieType";
 import TvService from "@/helpers/services/Tv.service";
 import router from "@/router";
+import PeopleService from "@/helpers/services/People.service";
+import {PeopleDetails} from "@/helpers/types/PeopleType";
 
 export default defineComponent({
     name: "TheHeader",
@@ -92,11 +94,12 @@ export default defineComponent({
                 {index: 1, name: "Acceuil", path: "/"},
                 {index: 2, name: "Films", path: "/movies"},
                 {index: 3, name: "Series", path: "/tv-shows"},
-                {index: 4, name: "Nouvautés", path: "/latest"},
+                {index: 4, name: "Acteurs", path: "/people"},
                 {index: 5, name: "Ma Listes", path: "/favory"},
             ],
             searchQuery: "",
             results: {} as MovieDetails,
+            resultsPeople: {} as PeopleDetails,
             timeout: 0
         };
     },
@@ -147,6 +150,16 @@ export default defineComponent({
                     console.log(error);
                 });
         },
+        handleSearchPeople(query: string) {
+            PeopleService.getPeopleByQuery(query)
+                .then((response: PeopleDetails) => {
+                    this.resultsPeople = response;
+                    this.$emit("search-results", response);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        },
     },
     watch: {
         searchQuery(newQuery: string) {
@@ -157,6 +170,8 @@ export default defineComponent({
             } else {
                 if (router.currentRoute.value.path === '/tv-shows') {
                     this.handleSearchTv(newQuery);
+                } else if (router.currentRoute.value.path === '/people') {
+                    this.handleSearchPeople(newQuery);
                 } else {
                     this.handleSearch(newQuery);
                 }

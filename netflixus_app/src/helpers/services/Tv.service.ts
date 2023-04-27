@@ -44,6 +44,13 @@ class TvService {
         );
         return "";
     }
+
+    async getTvShowCredits(id: string): Promise<string> {
+        const {data}: { data: any } = await axiosInstance.get(
+            `/tv/${id}/credits?api_key=${process.env.VUE_APP_API_KEY}&language=en-US`
+        );
+        return data;
+    }
 }
 
 export default new TvService();

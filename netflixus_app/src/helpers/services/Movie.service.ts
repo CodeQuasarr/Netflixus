@@ -51,8 +51,14 @@ class MovieService {
         const { data }: { data: MovieVideo } = await axiosInstance.get(
             `/movie/${id}/videos?api_key=${process.env.VUE_APP_API_KEY}&language=en-US`
         );
-        console.log("dataggggg", data);
         return data.results[0].key;
+    }
+
+    async getMovieCredits(id: string): Promise<string> {
+        const { data }: { data: any } = await axiosInstance.get(
+            `/movie/${id}/credits?api_key=${process.env.VUE_APP_API_KEY}&language=en-US`
+        );
+        return data;
     }
 }
 

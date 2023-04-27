@@ -51,6 +51,16 @@
                     </div>
                 </div>
             </div>
+            <div>
+                <div class="mt-5">
+                    <h2 class="mb-3">Acteurs</h2>
+                    <div class="container-fluid p-0 m-0 d-flex flex-wrap align-items-center justify-content-center">
+                        <div v-for="cast in tvShow.credits.cast" :key="`cast-${cast.id}`" class="m-3 ">
+                            <PeopleItem :people="cast"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -59,14 +69,15 @@
 import {defineComponent} from "vue";
 import TvService from "@/helpers/services/Tv.service";
 import {TvShowDetail} from "@/helpers/types/TvShowType";
+import PeopleItem from "@/components/people/PeopleItem.vue";
 
 export default defineComponent({
     name: "TvShowView",
+    components: {PeopleItem},
     data() {
         return {
             tvShow: {} as TvShowDetail,
             videoKey: "",
-
         };
     },
     methods: {
@@ -74,6 +85,7 @@ export default defineComponent({
             const tvShowID = this.$route.params.id as string;
             this.getTvShow(tvShowID);
             this.getVideo(tvShowID);
+            this.getTvShowCredits(tvShowID);
         },
         getTvShow(tvShowID: string) {
             TvService.getTvShowById(tvShowID)
@@ -88,6 +100,15 @@ export default defineComponent({
             TvService.getTvShowVideoKey(tvShowID)
                 .then((response) => {
                     this.videoKey = response;
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        },
+        getTvShowCredits(tvShowID: string) {
+            TvService.getTvShowCredits(tvShowID)
+                .then((response: any) => {
+                    this.tvShow.credits = response;
                 })
                 .catch((error) => {
                     console.log(error);

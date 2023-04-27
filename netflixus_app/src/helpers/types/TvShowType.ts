@@ -1,7 +1,7 @@
 export type Genre = {
-id: number;
-name: string;
-label?: string;
+    id: number;
+    name: string;
+    label?: string;
 };
 
 export type Poster = {
@@ -114,8 +114,19 @@ export type TvShowDetail = {
         results: VideoDetails[]
     }
     release_date: string,
+    credits: MovieCredits[],
+
+}
+export type MovieCredits = {
+    cast: Cast[],
 }
 
+export type Cast = {
+    adult: boolean,
+    name: string,
+    profile_path: string,
+    cast_id: number,
+}
 
 export type TvShowDetails = {
     page?: number;

@@ -5,10 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0a308cec-713d-405b-940e-5f7c2a06049f" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/netflixus_app/src/components/people/PeopleCard.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/netflixus_app/src/components/people/PeopleItem.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/netflixus_app/src/helpers/services/People.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/netflixus_app/src/helpers/types/PeopleType.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/netflixus_app/src/views/PeopleView.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/netflixus_app/src/views/people/IndexView.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/netflixus_app/src/components/TheHeader.vue" beforeDir="false" afterPath="$PROJECT_DIR$/netflixus_app/src/components/TheHeader.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/netflixus_app/src/components/tv-shows/TvShowsCard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/netflixus_app/src/components/tv-shows/TvShowsCard.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/netflixus_app/src/helpers/services/Movie.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/netflixus_app/src/helpers/services/Movie.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/netflixus_app/src/helpers/services/Tv.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/netflixus_app/src/helpers/services/Tv.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/netflixus_app/src/helpers/types/MovieType.ts" beforeDir="false" afterPath="$PROJECT_DIR$/netflixus_app/src/helpers/types/MovieType.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/netflixus_app/src/helpers/types/TvShowType.ts" beforeDir="false" afterPath="$PROJECT_DIR$/netflixus_app/src/helpers/types/TvShowType.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/netflixus_app/src/layouts/NetflixusTemplate.vue" beforeDir="false" afterPath="$PROJECT_DIR$/netflixus_app/src/layouts/NetflixusTemplate.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/netflixus_app/src/router/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/netflixus_app/src/router/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/netflixus_app/src/views/MovieView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/netflixus_app/src/views/MovieView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/netflixus_app/src/views/TvShowView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/netflixus_app/src/views/TvShowView.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,6 +105,7 @@
       <workItem from="1682355560639" duration="36209000" />
       <workItem from="1682441268173" duration="14094000" />
       <workItem from="1682548347045" duration="23307000" />
+      <workItem from="1682611182729" duration="8845000" />
     </task>
     <servers />
   </component>

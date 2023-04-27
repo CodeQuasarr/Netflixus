@@ -4,8 +4,10 @@
             <div class="col-12 movie-banner">
                 <div class="movie-banner-overlay ">
                     <div class="container d-flex flex-wrap justify-content-center justify-content-around">
-                        <div class="d-none d-md-block" v-if="movie.poster_path" style="width: 300px; min-height: 450px !important; margin-top: 20px">
-                            <img :src="`https://www.themoviedb.org/t/p/w300_and_h450_bestv2/${movie.poster_path}`" alt="..." class="img-fluid">
+                        <div class="d-none d-md-block" v-if="movie.poster_path"
+                             style="width: 300px; min-height: 450px !important; margin-top: 20px">
+                            <img :src="`https://www.themoviedb.org/t/p/w300_and_h450_bestv2/${movie.poster_path}`"
+                                 alt="..." class="img-fluid">
                         </div>
                         <div class="col-12 col-lg-8 my-5">
                             <h1>{{ movie.title }}</h1>
@@ -19,26 +21,42 @@
                                 <span> {{ convertNumberToHours(movie.runtime) }} </span>
                             </div>
                             <h2 class="h3">Synopsis</h2>
-                            <p  class="clamp">{{ movie.overview }}</p>
+                            <p class="clamp">{{ movie.overview }}</p>
 
                             <h2 class="h3">Langues</h2>
-                            <span v-for="(langue, index) in movie.spoken_languages" :key="`langue-${index}`">{{ langue.name }}
+                            <span v-for="(langue, index) in movie.spoken_languages"
+                                  :key="`langue-${index}`">{{ langue.name }}
                                     <span v-if="index < movie.spoken_languages.length - 1"> • </span>
                                 </span>
                         </div>
                     </div>
                 </div>
-                <img v-if="movie.backdrop_path" :src="`https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces/${movie.backdrop_path}`"
+                <img v-if="movie.backdrop_path"
+                     :src="`https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces/${movie.backdrop_path}`"
                      alt="...">
             </div>
             <div v-if="movie.belongs_to_collection" class="container mt-5">
                 <h2 class="mb-3">Médias</h2>
                 <div class="d-flex align-items-center justify-content-center">
                     <div v-if="videoKey" class="col">
-                        <iframe width="100%" height="315" :src="`https://www.youtube.com/embed/${videoKey}`" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; " allowfullscreen></iframe>
+                        <iframe width="100%" height="315" :src="`https://www.youtube.com/embed/${videoKey}`"
+                                title="YouTube video player" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; " allowfullscreen></iframe>
                     </div>
                     <div class="col">
-                        <img class="w-100"  height="315"  :src="`https://www.themoviedb.org/t/p/w533_and_h300_bestv2/${movie.belongs_to_collection.backdrop_path}`" alt="">
+                        <img class="w-100" height="315"
+                             :src="`https://www.themoviedb.org/t/p/w533_and_h300_bestv2/${movie.belongs_to_collection.backdrop_path}`"
+                             alt="">
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="mt-5">
+                    <h2 class="mb-3">Acteurs</h2>
+                    <div class="container-fluid p-0 m-0 d-flex flex-wrap align-items-center justify-content-center">
+                        <div v-for="cast in movie.credits.cast" :key="`cast-${cast.id}`" class="m-3 ">
+                            <PeopleItem :people="cast"/>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -50,9 +68,11 @@
 import {defineComponent} from "vue";
 import MovieService from "@/helpers/services/Movie.service";
 import {MovieDetail} from "@/helpers/types/MovieType";
+import PeopleItem from "@/components/people/PeopleItem.vue";
 
 export default defineComponent({
     name: "MovieView",
+    components: {PeopleItem},
     data() {
         return {
             movie: {} as MovieDetail,
@@ -65,6 +85,7 @@ export default defineComponent({
             const movieID = this.$route.params.id as string;
             this.getMovie(movieID);
             this.getVideo(movieID);
+            this.getMovieCredits(movieID);
         },
         getMovie(movieID: string) {
             MovieService.getMovieById(movieID)
@@ -76,11 +97,20 @@ export default defineComponent({
                 });
         },
 
+        getMovieCredits(movieID: string) {
+            MovieService.getMovieCredits(movieID)
+                .then((response: any) => {
+                    this.movie.credits = response;
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        },
+
         getVideo(movieID: string) {
 
             MovieService.getMovieVideoKey(movieID)
                 .then((response) => {
-                    console.log("video key", response)
                     this.videoKey = response;
                 })
                 .catch((error) => {
@@ -124,6 +154,7 @@ export default defineComponent({
     object-position: center;
     border-radius: 0.5rem;
 }
+
 .clamp {
     display: -webkit-box;
     -webkit-line-clamp: 3;
