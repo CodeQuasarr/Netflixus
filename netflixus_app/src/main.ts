@@ -11,6 +11,14 @@ import {fas} from "@fortawesome/free-solid-svg-icons";
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import Toaster from "@meforma/vue-toaster";
+// import the package
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+// import the package
+import VueAwesomePaginate from "vue-awesome-paginate";
+
+// import the necessary css file
+import "vue-awesome-paginate/dist/style.css";
 
 library.add(fas);
 
@@ -31,5 +39,6 @@ app
     .use(store)
     .use(router)
     .use(Toaster, { position: "top" })
+    .use(VueAwesomePaginate)
     .mount("#app");
 import "bootstrap/dist/js/bootstrap.js";

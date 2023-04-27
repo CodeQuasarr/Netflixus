@@ -20,11 +20,12 @@
     </div>
 </template>
 
-<script>
+<script lang="ts">
+import {defineComponent} from "vue";
 import TheHeader from "@/components/TheHeader.vue";
 import TheMoviesCard from "@/components/posters/TheMoviesCard.vue";
 
-export default {
+export default defineComponent({
     name: "NetflixusTemplate",
     components: {TheMoviesCard, TheHeader},
     data() {
@@ -32,6 +33,7 @@ export default {
             searchBarIsOpen: false,
             searchResults: {},
             search: '',
+            currentPage: 1 as number,
         };
     },
     methods: {
@@ -39,7 +41,7 @@ export default {
             return this.searchResults = results;
         }
     },
-};
+});
 </script>
 <style scoped>
 

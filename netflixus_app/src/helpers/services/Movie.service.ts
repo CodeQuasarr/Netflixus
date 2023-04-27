@@ -4,11 +4,12 @@ import {Helpers} from "@/helpers/index.service";
 
 class MovieService {
 
-    async getMoviesByGenre(genre:null|number, language: null|string = null, year: null|number = null,): Promise<MovieDetails> {
+    async getMoviesByGenre(currentPage = 1, genre:null|number = null, language: null|string = null, year: null|number = null,): Promise<MovieDetails> {
         const params = new URLSearchParams({
             api_key: process.env.VUE_APP_API_KEY,
             include_adult: 'false'
         });
+        if (currentPage) { params.set('page', currentPage.toString()); }
         if (year) { params.set('year', year.toString()); }
         if (genre) { params.set('with_genres', genre.toString()); }
         if (language) { params.set('with_original_language', language); }

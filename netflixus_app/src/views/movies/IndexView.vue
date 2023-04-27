@@ -28,7 +28,9 @@
                 </div>
             </div>
 
-            <TheMoviesCard :movies="movies"/>
+            <TheMoviesCard
+                    :movies="movies"
+            />
         </div>
     </div>
 </template>
@@ -54,16 +56,19 @@ export default defineComponent({
             selectedLanguage: null,
             selectedYear: null,
             movies: [] as MovieDetails,
+
+            currentPage: 1 as number,
         };
     },
     watch: {
-        selectedLanguage (val: string|null) { this.getMovies(this.selectedGenre, val); },
-        selectedGenre(val: number|null) { this.getMovies(val); },
-        selectedYear(val: number|null) { this.getMovies(this.selectedGenre, this.selectedLanguage, val); }
+        currentPage(val: number) { this.getMovies(val); },
+        selectedGenre(val: number|null) { this.getMovies(this.currentPage, val); },
+        selectedLanguage (val: string|null) { this.getMovies(this.currentPage, this.selectedGenre, val); },
+        selectedYear(val: number|null) { this.getMovies(this.currentPage, this.selectedGenre, this.selectedLanguage, val); }
     },
     methods: {
-        getMovies(genreID: number|null, language: string|null = null, year: number|null = null) {
-            MovieService.getMoviesByGenre(genreID, language, year).then((response: MovieDetails) => {
+        getMovies(currentPage: number,genreID: number|null = null, language: string|null = null, year: number|null = null) {
+            MovieService.getMoviesByGenre(this.currentPage, genreID, language, year).then((response: MovieDetails) => {
                 this.movies = response;
             }).catch((error) => {
                 console.error(error);
@@ -74,19 +79,15 @@ export default defineComponent({
             this.selectedGenre = null;
             this.selectedLanguage = null;
 
-            this.getMovies(null);
+            this.getMovies(this.currentPage);
         }
     },
     mounted() {
-        this.getMovies(null);
+        this.getMovies(this.currentPage);
     },
 });
 </script>
 
 <style scoped>
-.form-control-sm {
-    background-color: #0A151F;
-    color: #acacac;
-    border: none;
-}
+
 </style>
