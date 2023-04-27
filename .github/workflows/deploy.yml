@@ -9,10 +9,10 @@ jobs:
         steps:
             -   name: Checkout code
                 uses: actions/checkout@v2
+            -   name: Acces to netflixus folder
+                run: cd netflixus_app
             -   name: Install dependencies
-                run:
-                    cd netflixus_app
-                    npm install
+                run: npm install
             -   name: Build production code
                 run: npm run build
             -   name: Copy files to server
