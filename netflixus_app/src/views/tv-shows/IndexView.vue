@@ -4,14 +4,19 @@
             <div class="filter d-flex align-items-center">
                 <div class="container d-flex align-items-center justify-content-between">
                     <div class="col-2 d-flex">
-                        <TvShowFilter title="GENRES"
-                                      @data-selected="selectedGenre = $event"
-                                      :datas="genresList"
+                        <TheMovieFilter title="GENRES"
+                                        @data-selected="selectedGenre = $event"
+                                        :datas="genresList"
                         />
-                        <TvShowFilter title="LANGUES"
-                                      @data-selected="selectedLanguage = $event"
-                                      :datas="languagesList"
+                        <TheMovieFilter title="LANGUES"
+                                        @data-selected="selectedLanguage = $event"
+                                        :datas="languagesList"
                         />
+                        <!--                        <TheMovieFilter-->
+                        <!--                            @data-selected="selectedYear = $event"-->
+                        <!--                            :datas="yearsList"-->
+                        <!--                            title="DATES"-->
+                        <!--                        />-->
                     </div>
                     <div class="col">
                         <button @click="reset()" class="btn btn-sm  btn-link link-light text-decoration-none float-end">
@@ -20,22 +25,24 @@
                     </div>
                 </div>
             </div>
-            <TvShowsCard :tvShows="tvShows"/>
+            <TvShowsCard :tvShows="tvShows" @current-page="currentPage = $event"
+            />
         </div>
     </div>
 </template>
 
 <script lang="ts">
-import TvShowFilter from "@/components/tv-shows/TvShowFilter.vue";
+import TheMovieFilter from "@/components/TheMovieFilter.vue";
 import TvShowsCard from "@/components/tv-shows/TvShowsCard.vue";
 import {TvShowDetails} from "@/helpers/types/TvShowType";
 import TvService from "@/helpers/services/Tv.service";
 import {Helpers} from "@/helpers/index.service";
 import {defineComponent} from "vue";
+import TheMoviesCard from "@/components/posters/TheMoviesCard.vue";
 
 export default defineComponent({
     name: "IndexView",
-    components: {TvShowFilter, TvShowsCard},
+    components: {TheMovieFilter, TvShowsCard},
     data() {
         return {
             yearsList: Helpers.yearsList,
@@ -46,22 +53,26 @@ export default defineComponent({
             selectedLanguage: null,
             selectedYear: null,
             tvShows: [] as TvShowDetails,
+            currentPage: 1 as number,
         };
     },
     watch: {
-        selectedGenre(val: number | null) {
+        currentPage(val: number) {
             this.getTvShows(val);
         },
+        selectedGenre(val: number | null) {
+            this.getTvShows(this.currentPage, val);
+        },
         selectedLanguage(val: string | null) {
-            this.getTvShows(this.selectedGenre, val);
+            this.getTvShows(this.currentPage, this.selectedGenre, val);
         },
         selectedYear(val: number | null) {
-            this.getTvShows(this.selectedGenre, this.selectedLanguage, val);
+            this.getTvShows(this.currentPage, this.selectedGenre, this.selectedLanguage, val);
         },
     },
     methods: {
-        getTvShows(genreID: number | null = null, language: string | null = null, year: number | null = null) {
-            TvService.getTvShowsByGenre(genreID, language, year)
+        getTvShows(currentPage: number, genreID: number | null = null, language: string | null = null, year: number | null = null) {
+            TvService.getTvShowsByGenre(this.currentPage, genreID, language, year)
                 .then((response: TvShowDetails) => {
                     this.tvShows = response;
                 })
@@ -74,11 +85,11 @@ export default defineComponent({
             this.selectedLanguage = null;
             this.selectedGenre = null;
             this.selectedYear = null;
-            this.getTvShows(null);
+            this.getTvShows(this.currentPage);
         }
     },
     mounted() {
-        this.getTvShows(null);
+        this.getTvShows(this.currentPage);
     }
 })
 </script>

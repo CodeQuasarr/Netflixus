@@ -3,11 +3,14 @@ import axiosInstance from "@/axios";
 import {Helpers} from "@/helpers/index.service";
 
 class TvService {
-    async getTvShowsByGenre(genre:null|number = null, language: null|string = null, year: null|number = null): Promise<TvShowDetails> {
+    async getTvShowsByGenre(currentPage = 1, genre: null | number = null, language: null | string = null, year: null | number = null): Promise<TvShowDetails> {
         const params = new URLSearchParams({
             api_key: process.env.VUE_APP_API_KEY,
             include_adult: 'false'
         });
+        if (currentPage) {
+            params.set('page', currentPage.toString());
+        }
         if (year) {
             params.set('year', year.toString());
         }
@@ -39,7 +42,7 @@ class TvService {
         const {data}: { data: TvShowDetails } = await axiosInstance.get(
             `/tv/${id}/videos?api_key=${process.env.VUE_APP_API_KEY}&language=en-US`
         );
-        return"";
+        return "";
     }
 }
 

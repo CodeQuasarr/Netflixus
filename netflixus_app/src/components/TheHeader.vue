@@ -82,7 +82,7 @@ export default defineComponent({
             links: [
                 {index: 1, name: "Acceuil",   path: "/"},
                 {index: 2, name: "Films",     path: "/movies"},
-                {index: 3, name: "Series",    path: "/series"},
+                {index: 3, name: "Series",    path: "/tv-shows"},
                 {index: 4, name: "Nouvautés", path: "/latest"},
                 {index: 5, name: "Ma Listes", path: "/favory"},
             ],
