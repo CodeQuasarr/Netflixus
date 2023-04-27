@@ -57,6 +57,7 @@ export default defineComponent({
     position: relative;
     width: 190px;
     height: 270px;
+    overflow: hidden;
 }
 
 .poster-img img {

@@ -5,11 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0a308cec-713d-405b-940e-5f7c2a06049f" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.github/workflows/deploy.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/deploy.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/netflixus_app/src/components/posters/THeMovieItem.vue" beforeDir="false" afterPath="$PROJECT_DIR$/netflixus_app/src/components/posters/THeMovieItem.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/netflixus_app/src/components/posters/TheMoviesCard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/netflixus_app/src/components/posters/TheMoviesCard.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/netflixus_app/src/views/movies/IndexView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/netflixus_app/src/views/movies/IndexView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/netflixus_app/src/views/MovieView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/netflixus_app/src/views/MovieView.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +42,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "recette",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "C:/Users/Sayaris/Documents/vueJs/Netflixus/netflixus_app/src/components/posters",
     "node.js.detected.package.eslint": "true",
