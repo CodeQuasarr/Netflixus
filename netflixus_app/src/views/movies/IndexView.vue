@@ -29,6 +29,7 @@
             </div>
 
             <TheMoviesCard
+                    @current-page="currentPage = $event"
                     :movies="movies"
             />
         </div>
