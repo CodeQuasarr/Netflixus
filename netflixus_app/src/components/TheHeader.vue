@@ -61,7 +61,10 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import MovieService from "@/helpers/services/Movie.service";
-import { MovieDetails } from "@/helpers/types/MovieType";
+import {MovieDetails} from "@/helpers/types/MovieType";
+import TvService from "@/helpers/services/Tv.service";
+import router from "@/router";
+
 export default defineComponent({
     name: "TheHeader",
     props: {
@@ -79,7 +82,7 @@ export default defineComponent({
             links: [
                 {index: 1, name: "Acceuil",   path: "/"},
                 {index: 2, name: "Films",     path: "/movies"},
-                {index: 3, name: "Series",    path: "/series"},
+                {index: 3, name: "Series",    path: "/tv-shows"},
                 {index: 4, name: "Nouvautés", path: "/latest"},
                 {index: 5, name: "Ma Listes", path: "/favory"},
             ],
@@ -117,6 +120,16 @@ export default defineComponent({
         handleSearch(query: string) {
             console.log(this.searchQuery)
             MovieService.getMoviesByQuery(query)
+                .then((response: MovieDetails) => {
+                    this.results = response;
+                    this.$emit("search-results", response);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        },
+        handleSearchTv(query: string) {
+            TvService.getTvShowsByQuery(query)
                 .then((response: MovieDetails) => {
                     this.results = response;
                     this.$emit("search-results", response);
