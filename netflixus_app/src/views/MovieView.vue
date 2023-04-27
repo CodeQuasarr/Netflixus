@@ -4,7 +4,7 @@
             <div class="col-12 movie-banner">
                 <div class="movie-banner-overlay ">
                     <div class="container d-flex flex-wrap justify-content-center justify-content-around">
-                        <div v-if="movie.poster_path" style="width: 300px; min-height: 450px !important; margin-top: 20px">
+                        <div class="d-none d-md-block" v-if="movie.poster_path" style="width: 300px; min-height: 450px !important; margin-top: 20px">
                             <img :src="`https://www.themoviedb.org/t/p/w300_and_h450_bestv2/${movie.poster_path}`" alt="..." class="img-fluid">
                         </div>
                         <div class="col-12 col-lg-8 my-5">
