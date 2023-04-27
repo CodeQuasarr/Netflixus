@@ -10,7 +10,7 @@
 
         <div style="margin-top: 85px !important;" class="container-fluid m-0 px-0 text-white">
             <template v-if="$store.getters.searchBarIsOpen">
-                <TheMoviesCard :movies="searchResults" />
+                <TheMoviesCard :movies="searchResults"/>
             </template>
             <template v-else>
                 <RouterView/>

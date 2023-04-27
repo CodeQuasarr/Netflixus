@@ -4,7 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0a308cec-713d-405b-940e-5f7c2a06049f" name="Changes" comment="" />
+    <list default="true" id="0a308cec-713d-405b-940e-5f7c2a06049f" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/netflixus_app/src/components/TheHeader.vue" beforeDir="false" afterPath="$PROJECT_DIR$/netflixus_app/src/components/TheHeader.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/netflixus_app/src/components/tv-shows/TvShowItem.vue" beforeDir="false" afterPath="$PROJECT_DIR$/netflixus_app/src/components/tv-shows/TvShowItem.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/netflixus_app/src/helpers/services/Tv.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/netflixus_app/src/helpers/services/Tv.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/netflixus_app/src/helpers/types/TvShowType.ts" beforeDir="false" afterPath="$PROJECT_DIR$/netflixus_app/src/helpers/types/TvShowType.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/netflixus_app/src/layouts/NetflixusTemplate.vue" beforeDir="false" afterPath="$PROJECT_DIR$/netflixus_app/src/layouts/NetflixusTemplate.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/netflixus_app/src/views/TvShowView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/netflixus_app/src/views/TvShowView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/netflixus_app/src/views/tv-shows/IndexView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/netflixus_app/src/views/tv-shows/IndexView.vue" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -38,7 +47,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;recette&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;add-tv-shows&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/Sayaris/Documents/vueJs/Netflixus/netflixus_app/src/components/posters&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
@@ -47,7 +56,7 @@
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;settings.webpack&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\Sayaris\\Documents\\vueJs\\Netflixus\\netflixus_app\\node_modules\\typescript\\lib&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/home/sayaris/Documents/GitHub/Perso/Netflixus/netflixus_app/node_modules/typescript/lib&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
