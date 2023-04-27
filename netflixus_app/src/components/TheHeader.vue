@@ -13,10 +13,10 @@
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li class="nav-item" v-for="link in links" :key="`link-${link.index}`">
                                 <template v-if="link.index === 5 && $store.getters.isAuthenticated">
-                                    <RouterLink :to="link.path" class="nav-link"> {{ link.name }} </RouterLink>
+                                    <RouterLink :to="link.path" class="nav-link"> {{ link.name }}</RouterLink>
                                 </template>
                                 <template v-if="link.index !== 5">
-                                    <RouterLink :to="link.path" class="nav-link"> {{ link.name }} </RouterLink>
+                                    <RouterLink :to="link.path" class="nav-link"> {{ link.name }}</RouterLink>
                                 </template>
 
                             </li>
@@ -37,18 +37,27 @@
                                     type="button"
                                     @click="closeSearch()"
                             >
-                                <font-icon icon="close" />
+                                <font-icon icon="close"/>
                             </button>
                         </div>
                         <div v-if="$store.getters.isAuthenticated" class="dropdown">
-                            <button class="btn btn-link dropdown-toggle text-decoration-none text-uppercase text-white" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <button class="btn btn-link dropdown-toggle text-decoration-none text-uppercase text-white"
+                                    type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Samsoniteuu
                             </button>
                             <ul class="dropdown-menu bg-netflixus-dark">
-                                <li> <RouterLink to="/" class="dropdown-item" href="#">Compte</RouterLink></li>
-                                <li> <RouterLink to="/" class="dropdown-item" href="#">Aide</RouterLink></li>
-                                <li><hr class="dropdown-divider bg-danger"></li>
-                                <li><button class=" btn btn-black dropdown-item" href="#">Se Déconnecter</button></li>
+                                <li>
+                                    <RouterLink to="/" class="dropdown-item" href="#">Compte</RouterLink>
+                                </li>
+                                <li>
+                                    <RouterLink to="/" class="dropdown-item" href="#">Aide</RouterLink>
+                                </li>
+                                <li>
+                                    <hr class="dropdown-divider bg-danger">
+                                </li>
+                                <li>
+                                    <button class=" btn btn-black dropdown-item" href="#">Se Déconnecter</button>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -59,9 +68,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import {defineComponent} from "vue";
 import MovieService from "@/helpers/services/Movie.service";
-import { MovieDetails } from "@/helpers/types/MovieType";
+import {MovieDetails} from "@/helpers/types/MovieType";
+import TvShowService from "@/helpers/services/TvShow.service";
+import router from "@/router";
+
 export default defineComponent({
     name: "TheHeader",
     props: {
@@ -77,9 +89,9 @@ export default defineComponent({
     data() {
         return {
             links: [
-                {index: 1, name: "Acceuil",   path: "/"},
-                {index: 2, name: "Films",     path: "/movies"},
-                {index: 3, name: "Series",    path: "/series"},
+                {index: 1, name: "Acceuil", path: "/"},
+                {index: 2, name: "Films", path: "/movies"},
+                {index: 3, name: "Series", path: "/tv-shows"},
                 {index: 4, name: "Nouvautés", path: "/latest"},
                 {index: 5, name: "Ma Listes", path: "/favory"},
             ],
@@ -125,16 +137,28 @@ export default defineComponent({
                     console.log(error);
                 });
         },
+        handleSearchTv(query: string) {
+            TvShowService.getTvShowsByQuery(query)
+                .then((response: MovieDetails) => {
+                    this.results = response;
+                    this.$emit("search-results", response);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        },
     },
     watch: {
         searchQuery(newQuery: string) {
             console.log(newQuery)
             if (newQuery.length === 0) {
-                console.log('newQuery')
-                this.$emit("search", '');
+                this.$emit("search-results", '');
             } else {
-                this.handleSearch(newQuery);
-                this.$emit("search", newQuery);
+                if (router.currentRoute.value.path === "/movies") {
+                    this.handleSearch(newQuery);
+                } else if (router.currentRoute.value.path === "/tv-shows") {
+                    this.handleSearchTv(newQuery);
+                }
             }
         },
     },
@@ -145,6 +169,7 @@ export default defineComponent({
 .bg-netflixus-dark {
     background-color: #060D17 !important;
 }
+
 .navbar-brand {
     font-family: 'Martian Mono', monospace;
     font-size: 25px;
@@ -153,6 +178,7 @@ export default defineComponent({
     text-decoration: none solid rgb(229, 9, 20);
     text-align: start;
 }
+
 .nav-link, .dropdown-item {
     color: #e5e5e5 !important;
     margin-right: 20px;
@@ -160,10 +186,12 @@ export default defineComponent({
     text-decoration: none solid rgb(218, 217, 217);
     font-family: 'Roboto Serif', serif;
 }
+
 .nav-link:hover, .dropdown-item:hover {
     color: #b3b3b3 !important;
     text-decoration: none solid rgb(179, 179, 179);
 }
+
 a.router-link-active {
     color: #e50914 !important;
     text-decoration: none solid rgb(229, 9, 20);
