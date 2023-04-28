@@ -112,5 +112,32 @@ export default defineComponent({
 });
 </script>
 <style scoped>
+.rating {
+    unicode-bidi: bidi-override;
+    direction: rtl;
+    text-align: center;
+}
 
+.rating span {
+    font-size: 30px;
+    display: inline-block;
+    position: relative;
+    width: 1.1em;
+    cursor: pointer;
+}
+
+.rating span:before {
+    content: '★';
+    position: absolute;
+    opacity: 0;
+}
+
+.rating span:hover:before,
+.rating span.star-filled:before {
+    opacity: 1;
+}
+
+.rating span.star-filled:before {
+    color: #FFD700;
+}
 </style>

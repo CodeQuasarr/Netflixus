@@ -66,4 +66,3 @@ class MovieService {
 }
 
 export default new MovieService();
-// https://api.themoviedb.org/3/discover/movie?api_key=b8b3e66e9192eeaa12e7e90dd87d7dd2&page=100&with_genres=10402

@@ -4,8 +4,8 @@ import LoginView from "@/views/LoginView.vue";
 import NetflixusTemplate from "@/layouts/NetflixusTemplate.vue";
 import MovieView from "@/views/movies/MovieView.vue";
 import IndexView from "@/views/movies/IndexView.vue";
-import TvShowView from "@/views/TvShowView.vue";
-import PeopleView from "@/views/PeopleView.vue";
+import TvShowView from "@/views/tv-shows/TvShowView.vue";
+import PeopleView from "@/views/people/PeopleView.vue";
 
 const routes: Array<RouteRecordRaw> = [
     {path: '/login', name: 'LOGIN', component: LoginView},
