@@ -4,6 +4,7 @@
              @mouseleave="posterIsHoverID = 0" class="swiper-slide-overlay">
             <div class="position-absolute top-50 start-50 translate-middle">
                 <RouterLink
+                        @click="$store.commit('setSearchBarState', false)"
                         v-if="posterIsHoverID === poster.id"
                         :to="{ name: 'MOVIES_ID', params: { id: this.poster.id } }"
                         class="btn btn-sm btn-warning "

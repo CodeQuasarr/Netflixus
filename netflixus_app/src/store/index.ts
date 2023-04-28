@@ -15,7 +15,7 @@ export default createStore({
             return state.token !== null;
         },
         posters: (state) => state.posters,
-        searchBarIsOpen: (state) => state.searchBarState,
+        searchBarIsOpen: (state) => state.searchBarState ?? false,
     },
     mutations: {
         setSearchBarState(state, value: boolean) {

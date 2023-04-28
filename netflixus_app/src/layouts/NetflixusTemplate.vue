@@ -35,7 +35,7 @@ export default defineComponent({
     components: {TheMoviesCard, TheHeader},
     data() {
         return {
-            searchBarIsOpen: false,
+            searchBarIsOpen: this.$store.getters.searchBarIsOpen,
             searchResults: {} as SearchMovies,
             search: '',
             currentPage: 1 as number,
