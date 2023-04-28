@@ -15,7 +15,7 @@
 <script lang="ts">
 import {defineComponent} from "vue";
 import THeMovieItem from "@/components/posters/THeMovieItem.vue";
-import {SearchMovies} from "@/helpers/types/MovieType";
+import {MovieDetails, SearchMovies} from "@/helpers/types/MovieType";
 import ThePagination from "@/components/ThePagination.vue";
 
 export default defineComponent({
@@ -23,7 +23,7 @@ export default defineComponent({
     components: {ThePagination, THeMovieItem},
     props: {
         movies: {
-            type: Object as () => SearchMovies,
+            type: Object as () => SearchMovies | MovieDetails,
             required: true,
         },
     },

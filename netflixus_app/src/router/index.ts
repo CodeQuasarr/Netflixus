@@ -17,9 +17,9 @@ const routes: Array<RouteRecordRaw> = [
             {path: '/', name: 'HOME', component: HomeView},
             {path: '/movies/:id', name: 'MOVIES_ID', component: MovieView},
             {path: '/movies', name: 'MOVIES', component: IndexView},
-          {path: '/tv-shows', name: 'TV_SHOWS', component: () => import('@/views/tv-shows/IndexView.vue')},
-          {path: '/tv-shows/:id', name: 'TV_SHOWS_ID', component: TvShowView},
-          {path: '/people', name: 'PEOPLE', component: () => import('@/views/people/IndexView.vue')},
+            {path: '/tv-shows', name: 'TV_SHOWS', component: () => import('@/views/tv-shows/IndexView.vue')},
+            {path: '/tv-shows/:id', name: 'TV_SHOWS_ID', component: TvShowView},
+            {path: '/people', name: 'PEOPLE', component: () => import('@/views/people/IndexView.vue')},
             {path: '/people/:id', name: 'PEOPLE_ID', component: PeopleView},
         ]
     },

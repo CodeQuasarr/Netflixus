@@ -23,8 +23,14 @@ const languagesList: { name: string, id: string }[] = [
     { name: 'Français', id: 'fr' },
 ]
 
+const getGenreID = (genre: string): number => {
+    const genreID = genreList.find((g: Genre) => g.name === genre);
+    return genreID ? genreID.id : 0;
+}
+
 export const Helpers = {
     genreList,
+    getGenreID,
     languagesList,
     yearsList
 }

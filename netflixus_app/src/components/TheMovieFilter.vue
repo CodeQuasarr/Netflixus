@@ -1,5 +1,5 @@
 <template>
-    <div class="col-5">
+    <div class="col-7">
         <div class="dropdown">
             <button class="btn btn-sm btn-link text-decoration-none dropdown-toggle link-secondary" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                 {{ selected ?? title }}
@@ -13,10 +13,11 @@
     </div>
 </template>
 
-<script>
+<script lang="ts">
+import {defineComponent} from "vue";
 import {Helpers} from "@/helpers/index.service";
 
-export default {
+export default defineComponent({
     name: "TheMovieFilter",
     props: {
         datas: {
@@ -36,14 +37,16 @@ export default {
         };
     },
     methods: {
-        getSelected(data) {
+        getSelected(data: { name: null; id: never; }) {
             this.selected = data.name;
             this.$emit('data-selected', data.id);
         },
     },
-}
+});
 </script>
 
 <style scoped>
-
+.link-secondary {
+    font-size: 20px;
+}
 </style>
