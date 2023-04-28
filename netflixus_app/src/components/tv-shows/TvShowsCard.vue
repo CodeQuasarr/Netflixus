@@ -7,7 +7,7 @@
         </div>
         <ThePagination
             :tvShows="tvShows"
-            @page-clicked="onClickHandler"
+            @page-clicked="pageCLiked"
         />
     </div>
 </template>
@@ -32,7 +32,7 @@ export default defineComponent({
         };
     },
     methods: {
-        onClickHandler(page: number) {
+        pageCLiked(page: number) {
             this.currentPage = page;
             this.$emit("current-page", page);
         },

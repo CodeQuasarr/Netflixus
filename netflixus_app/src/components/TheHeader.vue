@@ -46,18 +46,17 @@
                                 Samsoniteuu
                             </button>
                             <ul class="dropdown-menu bg-netflixus-dark">
-                                <li>
-                                    <RouterLink to="/" class="dropdown-item" href="#">Compte</RouterLink>
+                                <li class="nav-item" v-for="link in loggedLinks" :key="`link-${link.index}`">
+                                    <template v-if="link.index === 5 && $store.getters.isAuthenticated">
+                                        <RouterLink :to="link.path" class="nav-link"> {{ link.name }}</RouterLink>
+                                    </template>
+                                    <template v-if="link.index !== 5">
+                                        <RouterLink :to="link.path" class="nav-link"> {{ link.name }}</RouterLink>
+                                    </template>
+
                                 </li>
-                                <li>
-                                    <RouterLink to="/" class="dropdown-item" href="#">Aide</RouterLink>
-                                </li>
-                                <li>
-                                    <hr class="dropdown-divider bg-danger">
-                                </li>
-                                <li>
-                                    <button class=" btn btn-black dropdown-item" href="#">Se Déconnecter</button>
-                                </li>
+                                <li><hr class="dropdown-divider bg-danger"></li>
+                                <li><button class=" btn btn-black dropdown-item" href="#">Se Déconnecter</button></li>
                             </ul>
                         </div>
                     </div>
@@ -97,6 +96,10 @@ export default defineComponent({
                 {index: 3, name: "Series", path: "/tv-shows"},
                 {index: 4, name: "Acteurs", path: "/people"},
                 {index: 5, name: "Ma Listes", path: "/favory"},
+            ],
+            loggedLinks: [
+                {index: 6, name: "Compte", path: "/dashboard"},
+                {index: 7, name: "Aide", path: "/help"},
             ],
             searchQuery: "",
             results: {} as SearchMovies,
@@ -193,7 +196,7 @@ export default defineComponent({
     color: #b3b3b3 !important;
     text-decoration: none solid rgb(179, 179, 179);
 }
-a.router-link-active {
+.router-link-exact-active {
     color: #e50914 !important;
     text-decoration: none solid rgb(229, 9, 20);
 }

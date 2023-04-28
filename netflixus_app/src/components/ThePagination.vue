@@ -6,7 +6,7 @@
                 :current-page="1"
                 :items-per-page="20"
                 :max-pages-shown="5"
-                :on-click="onClickHandler"
+                :on-click="pageCLiked"
                 v-model="currentPage"
         >
             <template #prev-button>
@@ -53,7 +53,7 @@ export default defineComponent({
         };
     },
     methods: {
-        onClickHandler(page: number) {
+        pageCLiked(page: number) {
             this.currentPage = page;
             this.$emit("page-clicked", page);
         },
