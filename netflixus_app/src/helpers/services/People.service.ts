@@ -4,7 +4,7 @@ import {PeopleDetails} from "@/helpers/types/PeopleType";
 class PeopleService {
     async getPeopleByQuery(query: string): Promise<PeopleDetails> {
         const { data }: { data: PeopleDetails } = await axiosInstance.get(
-            `/search/person?api_key=${process.env.VUE_APP_API_KEY}&language=fr-FR&include_adult=false&query=${query}`
+            `/search/person?api_key=${process.env.VUE_APP_API_KEY}&include_adult=false&query=${query}`
         );
         return data;
     }

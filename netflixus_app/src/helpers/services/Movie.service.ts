@@ -9,9 +9,9 @@ class MovieService {
             api_key: process.env.VUE_APP_API_KEY,
             include_adult: 'false'
         });
-        if (currentPage) { params.set('page', currentPage.toString()); }
         if (year) { params.set('year', year.toString()); }
         if (genre) { params.set('with_genres', genre.toString()); }
+        if (currentPage) { params.set('page', currentPage.toString()); }
         if (language) { params.set('with_original_language', language); }
         const { data } = await axiosInstance.get(`/discover/movie?${params.toString()}`);
         return data;

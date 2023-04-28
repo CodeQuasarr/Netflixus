@@ -114,3 +114,20 @@ export type MovieVideo = {
     id: number,
     results: VideoDetails[]
 }
+
+
+
+
+export type SearchMovie = {
+    id: number;
+    poster_path: string;
+}
+
+export type SearchMovies = {
+    page: number,
+    results: SearchMovie[]
+}
+
+export type SearchPeopleMovie = {
+    known_for: SearchMovie[];
+}

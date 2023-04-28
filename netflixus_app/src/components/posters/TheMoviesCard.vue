@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-if="movies.results">
         <div class="container-fluid p-0 m-0 d-flex flex-wrap align-items-center justify-content-center">
             <div v-for="(poster, index) in movies.results" :key="`poster-action-${index}`" class="m-3 slide ">
                 <THeMovieItem :poster="poster"/>
@@ -15,7 +15,7 @@
 <script lang="ts">
 import {defineComponent} from "vue";
 import THeMovieItem from "@/components/posters/THeMovieItem.vue";
-import {MovieDetails} from "@/helpers/types/MovieType";
+import {SearchMovies} from "@/helpers/types/MovieType";
 import ThePagination from "@/components/ThePagination.vue";
 
 export default defineComponent({
@@ -23,7 +23,7 @@ export default defineComponent({
     components: {ThePagination, THeMovieItem},
     props: {
         movies: {
-            type: Object as () => MovieDetails,
+            type: Object as () => SearchMovies,
             required: true,
         },
     },
@@ -33,6 +33,10 @@ export default defineComponent({
         };
     },
     methods: {
+        /**
+         * @description Handle the click on the pagination
+         * @param page
+         */
         onClickHandler(page: number) {
             this.currentPage = page;
             this.$emit("current-page", page);

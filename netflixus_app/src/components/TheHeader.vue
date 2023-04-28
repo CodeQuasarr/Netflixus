@@ -69,11 +69,8 @@
 
 <script lang="ts">
 import {defineComponent} from "vue";
-import MovieService from "@/helpers/services/Movie.service";
-import {MovieDetails} from "@/helpers/types/MovieType";
-import TvService from "@/helpers/services/Tv.service";
-import router from "@/router";
-import PeopleService from "@/helpers/services/People.service";
+import FilterService from "@/helpers/services/Filter.service";
+import {SearchMovie, SearchMovies} from "@/helpers/types/MovieType";
 import {PeopleDetails} from "@/helpers/types/PeopleType";
 
 export default defineComponent({
@@ -84,8 +81,12 @@ export default defineComponent({
             default: false,
         },
         searchResults: {
-            type: Object,
+            type: Object as () => SearchMovie[],
             default: () => ({}),
+        },
+        currentPage: {
+            type: Number,
+            required: true,
         },
     },
     data() {
@@ -98,29 +99,39 @@ export default defineComponent({
                 {index: 5, name: "Ma Listes", path: "/favory"},
             ],
             searchQuery: "",
-            results: {} as MovieDetails,
+            results: {} as SearchMovies,
             resultsPeople: {} as PeopleDetails,
             timeout: 0
         };
     },
     methods: {
+        /**
+         * @description Handle the input event on the search input
+         */
         onInput() {
             // Clear the previous timeout if there is one
             if (this.timeout) {
                 clearTimeout(this.timeout);
             }
-
             // Set a new timeout to submit the input after 2 seconds
             this.timeout = setTimeout(() => {
                 //this.handleSearch();
             }, 300);
         },
+
+        /**
+         * @description Open the search bar
+         */
         openSearch() {
             if (!this.searchBarIsOpen) {
                 this.$emit("search-bar-toggle", true);
                 this.$store.commit("setSearchBarState", true);
             }
         },
+
+        /**
+         * @description Close the search bar
+         */
         closeSearch() {
             if (this.searchBarIsOpen) {
                 this.searchQuery = "";
@@ -129,53 +140,31 @@ export default defineComponent({
                 this.$emit("search", "");
             }
         },
-        handleSearch(query: string) {
-            console.log(this.searchQuery)
-            MovieService.getMoviesByQuery(query)
-                .then((response: MovieDetails) => {
-                    this.results = response;
-                    this.$emit("search-results", response);
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
-        },
-        handleSearchTv(query: string) {
-            TvService.getTvShowsByQuery(query)
-                .then((response: MovieDetails) => {
-                    this.results = response;
-                    this.$emit("search-results", response);
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
-        },
-        handleSearchPeople(query: string) {
-            PeopleService.getPeopleByQuery(query)
-                .then((response: PeopleDetails) => {
-                    this.resultsPeople = response;
-                    this.$emit("search-results", response);
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
+
+        /**
+         * @description Handle the search event
+         * @param query The search query
+         * @param page
+         * @emits search-results
+         * @returns void
+         */
+        async handleSearch(query: string, page = 1) {
+            try {
+                const response = await FilterService.search(query, page);
+                this.results = response;
+                this.$emit("search-results", response);
+            } catch (error) {
+                console.error(error);
+            }
         },
     },
     watch: {
         searchQuery(newQuery: string) {
-            console.log(newQuery)
-            if (newQuery.length === 0) {
-                console.log('newQuery')
-                this.$emit("search", '');
-            } else {
-                if (router.currentRoute.value.path === '/tv-shows') {
-                    this.handleSearchTv(newQuery);
-                } else if (router.currentRoute.value.path === '/people') {
-                    this.handleSearchPeople(newQuery);
-                } else {
-                    this.handleSearch(newQuery);
-                }
-            }
+            this.handleSearch(newQuery);
+            this.$emit("search", newQuery || '');
+        },
+        currentPage(newPage: number) {
+            this.handleSearch(this.searchQuery, newPage);
         },
     },
 });
@@ -185,7 +174,6 @@ export default defineComponent({
 .bg-netflixus-dark {
     background-color: #060D17 !important;
 }
-
 .navbar-brand {
     font-family: 'Martian Mono', monospace;
     font-size: 25px;
@@ -194,7 +182,6 @@ export default defineComponent({
     text-decoration: none solid rgb(229, 9, 20);
     text-align: start;
 }
-
 .nav-link, .dropdown-item {
     color: #e5e5e5 !important;
     margin-right: 20px;
@@ -202,12 +189,10 @@ export default defineComponent({
     text-decoration: none solid rgb(218, 217, 217);
     font-family: 'Roboto Serif', serif;
 }
-
 .nav-link:hover, .dropdown-item:hover {
     color: #b3b3b3 !important;
     text-decoration: none solid rgb(179, 179, 179);
 }
-
 a.router-link-active {
     color: #e50914 !important;
     text-decoration: none solid rgb(229, 9, 20);

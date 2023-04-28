@@ -19,12 +19,12 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import {MovieDetail, Poster} from "@/helpers/types/MovieType";
+import {SearchMovie} from "@/helpers/types/MovieType";
 export default defineComponent({
     name: "THeMovieItem",
     props: {
         poster: {
-            type: Object as () => Poster | MovieDetail,
+            type: Object as () => SearchMovie,
             required: true,
         },
     },

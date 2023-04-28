@@ -1,28 +1,20 @@
 <template>
     <div>
-
         <TheHeader
                 class="fixed-top"
                 :search-bar-is-open="searchBarIsOpen"
                 @search="search = $event"
-                @search-results="handleSearchPeopleResults"
+                @search-results="handleSearchResults"
                 @search-bar-toggle="searchBarIsOpen = !searchBarIsOpen"
-                v-if="$route.path === '/people'"/>
-        <TheHeader class="fixed-top"
-                   :search-bar-is-open="searchBarIsOpen"
-                   @search="search = $event"
-                   @search-results="handleSearchResults"
-                   @search-bar-toggle="searchBarIsOpen = !searchBarIsOpen"
-                   v-else/>
+                :current-page="currentPage"
+        />
 
         <div style="margin-top: 85px !important;" class="container-fluid m-0 px-0 text-white">
             <template v-if="$store.getters.searchBarIsOpen">
-                <TvShowsCard :tv-shows="searchResults"
-                             v-if="$route.path === '/tv-shows'"/>
-                <PeopleCard :people="searchResultsPeople"
-                            v-else-if="$route.path === '/people'"/>
-                <TheMoviesCard :movies="searchResults"
-                               v-else/>
+                <TheMoviesCard
+                        @current-page="currentPage = $event"
+                        :movies="searchResults"
+                />
             </template>
             <template v-else>
                 <RouterView/>
@@ -35,36 +27,31 @@
 <script lang="ts">
 import {defineComponent} from "vue";
 import TheHeader from "@/components/TheHeader.vue";
-import {MovieDetails} from "@/helpers/types/MovieType";
-import TvShowsCard from "@/components/tv-shows/TvShowsCard.vue";
 import TheMoviesCard from "@/components/posters/TheMoviesCard.vue";
-import PeopleCard from "@/components/people/PeopleCard.vue";
-import {PeopleDetails} from "@/helpers/types/PeopleType";
-import router from "@/router";
+import {SearchMovies} from "@/helpers/types/MovieType";
 
 export default defineComponent({
     name: "NetflixusTemplate",
-    components: {TheMoviesCard, TvShowsCard, PeopleCard, TheHeader},
+    components: {TheMoviesCard, TheHeader},
     data() {
         return {
             searchBarIsOpen: false,
-            searchResults: {} as MovieDetails,
-            searchResultsPeople: {} as PeopleDetails,
+            searchResults: {} as SearchMovies,
             search: '',
             currentPage: 1 as number,
         };
     },
     methods: {
-        router() {
-            return router
-        },
-        handleSearchResults(results: MovieDetails) {
+        handleSearchResults(results: SearchMovies) {
             return this.searchResults = results;
-        },
-        handleSearchPeopleResults(results: PeopleDetails) {
-            return this.searchResultsPeople = results;
-        },
+        }
     },
+    watch: {
+        currentPage(val: number) {
+            console.log(val);
+            this.currentPage = val;
+            },
+    }
 });
 </script>
 <style scoped>
