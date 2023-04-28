@@ -13,10 +13,10 @@
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li class="nav-item" v-for="link in links" :key="`link-${link.index}`">
                                 <template v-if="link.index === 5 && $store.getters.isAuthenticated">
-                                    <RouterLink :to="link.path" class="nav-link"> {{ link.name }} </RouterLink>
+                                    <RouterLink :to="link.path" class="nav-link"> {{ link.name }}</RouterLink>
                                 </template>
                                 <template v-if="link.index !== 5">
-                                    <RouterLink :to="link.path" class="nav-link"> {{ link.name }} </RouterLink>
+                                    <RouterLink :to="link.path" class="nav-link"> {{ link.name }}</RouterLink>
                                 </template>
 
                             </li>
@@ -37,16 +37,24 @@
                                     type="button"
                                     @click="closeSearch()"
                             >
-                                <font-icon icon="close" />
+                                <font-icon icon="close"/>
                             </button>
                         </div>
                         <div v-if="$store.getters.isAuthenticated" class="dropdown">
-                            <button class="btn btn-link dropdown-toggle text-decoration-none text-uppercase text-white" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <button class="btn btn-link dropdown-toggle text-decoration-none text-uppercase text-white"
+                                    type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Samsoniteuu
                             </button>
                             <ul class="dropdown-menu bg-netflixus-dark">
-                                <li> <RouterLink to="/" class="dropdown-item" href="#">Compte</RouterLink></li>
-                                <li> <RouterLink to="/" class="dropdown-item" href="#">Aide</RouterLink></li>
+                                <li class="nav-item" v-for="link in loggedLinks" :key="`link-${link.index}`">
+                                    <template v-if="link.index === 5 && $store.getters.isAuthenticated">
+                                        <RouterLink :to="link.path" class="nav-link"> {{ link.name }}</RouterLink>
+                                    </template>
+                                    <template v-if="link.index !== 5">
+                                        <RouterLink :to="link.path" class="nav-link"> {{ link.name }}</RouterLink>
+                                    </template>
+
+                                </li>
                                 <li><hr class="dropdown-divider bg-danger"></li>
                                 <li><button class=" btn btn-black dropdown-item" href="#">Se Déconnecter</button></li>
                             </ul>
@@ -59,9 +67,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import MovieService from "@/helpers/services/Movie.service";
-import { MovieDetails } from "@/helpers/types/MovieType";
+import {defineComponent} from "vue";
+import FilterService from "@/helpers/services/Filter.service";
+import {SearchMovie, SearchMovies} from "@/helpers/types/MovieType";
+import {PeopleDetails} from "@/helpers/types/PeopleType";
+
 export default defineComponent({
     name: "TheHeader",
     props: {
@@ -70,42 +80,61 @@ export default defineComponent({
             default: false,
         },
         searchResults: {
-            type: Object,
+            type: Object as () => SearchMovie[],
             default: () => ({}),
+        },
+        currentPage: {
+            type: Number,
+            required: true,
         },
     },
     data() {
         return {
             links: [
-                {index: 1, name: "Acceuil",   path: "/"},
-                {index: 2, name: "Films",     path: "/movies"},
-                {index: 3, name: "Series",    path: "/series"},
-                {index: 4, name: "Nouvautés", path: "/latest"},
+                {index: 1, name: "Acceuil", path: "/"},
+                {index: 2, name: "Films", path: "/movies"},
+                {index: 3, name: "Series", path: "/tv-shows"},
+                {index: 4, name: "Acteurs", path: "/people"},
                 {index: 5, name: "Ma Listes", path: "/favory"},
             ],
+            loggedLinks: [
+                {index: 6, name: "Compte", path: "/dashboard"},
+                {index: 7, name: "Aide", path: "/help"},
+            ],
             searchQuery: "",
-            results: {} as MovieDetails,
+            results: {} as SearchMovies,
+            resultsPeople: {} as PeopleDetails,
             timeout: 0
         };
     },
     methods: {
+        /**
+         * @description Handle the input event on the search input
+         */
         onInput() {
             // Clear the previous timeout if there is one
             if (this.timeout) {
                 clearTimeout(this.timeout);
             }
-
             // Set a new timeout to submit the input after 2 seconds
             this.timeout = setTimeout(() => {
                 //this.handleSearch();
             }, 300);
         },
+
+        /**
+         * @description Open the search bar
+         */
         openSearch() {
             if (!this.searchBarIsOpen) {
                 this.$emit("search-bar-toggle", true);
                 this.$store.commit("setSearchBarState", true);
             }
         },
+
+        /**
+         * @description Close the search bar
+         */
         closeSearch() {
             if (this.searchBarIsOpen) {
                 this.searchQuery = "";
@@ -114,28 +143,31 @@ export default defineComponent({
                 this.$emit("search", "");
             }
         },
-        handleSearch(query: string) {
-            console.log(this.searchQuery)
-            MovieService.getMoviesByQuery(query)
-                .then((response: MovieDetails) => {
-                    this.results = response;
-                    this.$emit("search-results", response);
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
+
+        /**
+         * @description Handle the search event
+         * @param query The search query
+         * @param page
+         * @emits search-results
+         * @returns void
+         */
+        async handleSearch(query: string, page = 1) {
+            try {
+                const response = await FilterService.search(query, page);
+                this.results = response;
+                this.$emit("search-results", response);
+            } catch (error) {
+                console.error(error);
+            }
         },
     },
     watch: {
         searchQuery(newQuery: string) {
-            console.log(newQuery)
-            if (newQuery.length === 0) {
-                console.log('newQuery')
-                this.$emit("search", '');
-            } else {
-                this.handleSearch(newQuery);
-                this.$emit("search", newQuery);
-            }
+            this.handleSearch(newQuery);
+            this.$emit("search", newQuery || '');
+        },
+        currentPage(newPage: number) {
+            this.handleSearch(this.searchQuery, newPage);
         },
     },
 });
@@ -164,7 +196,7 @@ export default defineComponent({
     color: #b3b3b3 !important;
     text-decoration: none solid rgb(179, 179, 179);
 }
-a.router-link-active {
+.router-link-exact-active {
     color: #e50914 !important;
     text-decoration: none solid rgb(229, 9, 20);
 }

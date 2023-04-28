@@ -1,4 +1,4 @@
-import {MovieDetail, MovieDetails, MovieDetailsWithGenre, MovieVideo} from "@/helpers/types/MovieType";
+import {MovieCredits, MovieDetail, MovieDetails, MovieDetailsWithGenre, MovieVideo} from "@/helpers/types/MovieType";
 import axiosInstance from "@/axios";
 import {Helpers} from "@/helpers/index.service";
 
@@ -9,9 +9,9 @@ class MovieService {
             api_key: process.env.VUE_APP_API_KEY,
             include_adult: 'false'
         });
-        if (currentPage) { params.set('page', currentPage.toString()); }
         if (year) { params.set('year', year.toString()); }
         if (genre) { params.set('with_genres', genre.toString()); }
+        if (currentPage) { params.set('page', currentPage.toString()); }
         if (language) { params.set('with_original_language', language); }
         const { data } = await axiosInstance.get(`/discover/movie?${params.toString()}`);
         return data;
@@ -51,10 +51,18 @@ class MovieService {
         const { data }: { data: MovieVideo } = await axiosInstance.get(
             `/movie/${id}/videos?api_key=${process.env.VUE_APP_API_KEY}&language=en-US`
         );
-        console.log("dataggggg", data);
         return data.results[0].key;
     }
+
+    async getMovieCredits(id: string): Promise<MovieCredits> {
+        const params = new URLSearchParams({
+            api_key: process.env.VUE_APP_API_KEY,
+            include_adult: 'false',
+        });
+        const { data }: { data: MovieCredits } = await axiosInstance.get(`/movie/${id}/credits?${params.toString()}`);
+        return data;
+    }
+
 }
 
 export default new MovieService();
-// https://api.themoviedb.org/3/discover/movie?api_key=b8b3e66e9192eeaa12e7e90dd87d7dd2&page=100&with_genres=10402

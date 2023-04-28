@@ -15,12 +15,11 @@ export default createStore({
             return state.token !== null;
         },
         posters: (state) => state.posters,
-        searchBarIsOpen: (state) => state.searchBarState,
+        searchBarIsOpen: (state) => state.searchBarState ?? false,
     },
     mutations: {
         setSearchBarState(state, value: boolean) {
             state.searchBarState = value;
-            console.log("aaaaaaaaaaabbbbbbbbbbb", state.searchBarState)
         },
         // Posters on the homepage by genres
         setPostersByGenre(state, posters: MovieDetailsWithGenre[]) {

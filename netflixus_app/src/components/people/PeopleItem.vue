@@ -1,47 +1,44 @@
 <template>
     <div class="poster-img">
-        <div @touchstart="posterIsHoverID = poster.id" @mouseover="posterIsHoverID = poster.id"
-             @mouseleave="posterIsHoverID = 0" class="swiper-slide-overlay">
+        <div @mouseover="peopleIsHoverID = people.id" @mouseleave="peopleIsHoverID = 0" class="swiper-slide-overlay">
             <div class="position-absolute top-50 start-50 translate-middle">
                 <RouterLink
-                        @click="$store.commit('setSearchBarState', false)"
-                        v-if="posterIsHoverID === poster.id"
-                        :to="{ name: 'MOVIES_ID', params: { id: this.poster.id } }"
+                        v-if="peopleIsHoverID === people.id"
+                        :to="{ name: 'PEOPLE_ID', params: { id: this.people.id } }"
                         class="btn btn-sm btn-warning "
                 >
                     <i class="fas fa-tv"></i> Regarder
                 </RouterLink>
             </div>
         </div>
-        <img v-if="poster.poster_path" :src="`https://image.tmdb.org/t/p/w500${poster.poster_path}`" class="img-fluid"
+        <img v-if="people.profile_path" :src="`https://image.tmdb.org/t/p/w500${people.profile_path}`" class="img-fluid"
              alt="...">
     </div>
 </template>
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import {SearchMovie} from "@/helpers/types/MovieType";
+import {Cast} from "@/helpers/types/MovieType";
 
 export default defineComponent({
-    name: "THeMovieItem",
+    name: "PeopleItem",
     props: {
-        poster: {
-            type: Object as () => SearchMovie,
-            required: true,
+        people: {
+            type: Object as () => Cast,
+            required: true
         },
     },
     data() {
         return {
-            posterIsHoverID: 0,
+            peopleIsHoverID: 0,
         };
     },
     methods: {
         handleSearch() {
-            console.log('poster', this.poster.id)
-            this.$router.push({name: 'MOVIES', params: {id: this.poster.id}});
+            this.$router.push({name: 'PEOPLE', params: {id: this.people.id}});
         }
     },
-});
+})
 </script>
 
 <style scoped>
@@ -61,11 +58,11 @@ export default defineComponent({
     position: relative;
     width: 190px;
     height: 270px;
-    overflow: hidden;
 }
 
 .poster-img img {
     width: 100%;
     height: 100%;
 }
+
 </style>

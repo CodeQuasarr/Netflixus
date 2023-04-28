@@ -1,12 +1,10 @@
 <template>
     <div class="poster-img">
-        <div @touchstart="posterIsHoverID = poster.id" @mouseover="posterIsHoverID = poster.id"
-             @mouseleave="posterIsHoverID = 0" class="swiper-slide-overlay">
+        <div @mouseover="posterIsHoverID = poster.id" @mouseleave="posterIsHoverID = 0" class="swiper-slide-overlay">
             <div class="position-absolute top-50 start-50 translate-middle">
                 <RouterLink
-                        @click="$store.commit('setSearchBarState', false)"
                         v-if="posterIsHoverID === poster.id"
-                        :to="{ name: 'MOVIES_ID', params: { id: this.poster.id } }"
+                        :to="{ name: 'TV_SHOWS_ID', params: { id: this.poster.id } }"
                         class="btn btn-sm btn-warning "
                 >
                     <i class="fas fa-tv"></i> Regarder
@@ -18,16 +16,17 @@
     </div>
 </template>
 
+
 <script lang="ts">
 import {defineComponent} from 'vue';
-import {SearchMovie} from "@/helpers/types/MovieType";
+import {Poster, TvShowDetail} from "@/helpers/types/TvShowType";
 
 export default defineComponent({
-    name: "THeMovieItem",
+    name: "TvShowItem",
     props: {
         poster: {
-            type: Object as () => SearchMovie,
-            required: true,
+            type: Object as () => Poster | TvShowDetail,
+            required: true
         },
     },
     data() {
@@ -37,11 +36,10 @@ export default defineComponent({
     },
     methods: {
         handleSearch() {
-            console.log('poster', this.poster.id)
-            this.$router.push({name: 'MOVIES', params: {id: this.poster.id}});
+            this.$router.push({name: 'TV_SHOWS', params: {id: this.poster.id}});
         }
     },
-});
+})
 </script>
 
 <style scoped>
@@ -61,11 +59,11 @@ export default defineComponent({
     position: relative;
     width: 190px;
     height: 270px;
-    overflow: hidden;
 }
 
 .poster-img img {
     width: 100%;
     height: 100%;
 }
+
 </style>

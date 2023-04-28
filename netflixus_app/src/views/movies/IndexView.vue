@@ -1,34 +1,39 @@
 <template>
     <div>
-        <div class="mt-5">
+        <div class="py-5">
             <div class="filter d-flex align-items-center">
-                <div class="container d-flex align-items-center justify-content-between">
+                <div class="container d-flex align-items-center justify-content-between mb-5">
+
                     <div class="col-2 d-flex">
                         <TheMovieFilter
                                 @data-selected="selectedGenre = $event"
                                 :datas="genresList"
-                                title="GENRES"
+                                :title="genreTitle"
                         />
                         <TheMovieFilter
                                 @data-selected="selectedLanguage = $event"
                                 :selectedLanguage="selectedLanguage"
                                 :datas="languagesList"
-                                title="LANGUES"
+                                title="Langues"
                         />
                         <TheMovieFilter
                                 @data-selected="selectedYear = $event"
                                 :datas="yearsList"
-                                title="DATES"
+                                title="Date de sortie"
                         />
                     </div>
+
                     <div class="col">
-                        <button @click="reset()" class="btn btn-sm  btn-link link-light text-decoration-none float-end">rénitialiser</button>
+                        <button @click="reset()" class="btn btn-sm link-secondary text-decoration-none float-end">
+                            <font-icon icon="close"/> rénitialiser
+                        </button>
                     </div>
 
                 </div>
             </div>
 
             <TheMoviesCard
+                    @current-page="currentPage = $event"
                     :movies="movies"
             />
         </div>
@@ -51,8 +56,9 @@ export default defineComponent({
             yearsList: Helpers.yearsList,
             genresList: Helpers.genreList,
             languagesList: Helpers.languagesList,
+            genreTitle: "GENRES",
 
-            selectedGenre: null,
+            selectedGenre: null as number|null,
             selectedLanguage: null,
             selectedYear: null,
             movies: [] as MovieDetails,
@@ -78,16 +84,25 @@ export default defineComponent({
             this.selectedYear = null;
             this.selectedGenre = null;
             this.selectedLanguage = null;
-
             this.getMovies(this.currentPage);
+        },
+        init() {
+            if (this.$route.query.genre) {
+                this.genreTitle = this.$route.query.genre as string;
+                this.getMovies(this.currentPage, Helpers.getGenreID(this.$route.query.genre as string));
+            } else {
+                this.getMovies(this.currentPage);
+            }
         }
     },
     mounted() {
-        this.getMovies(this.currentPage);
+        this.init();
     },
 });
 </script>
 
 <style scoped>
-
+.link-secondary{
+    font-size: 20px;
+}
 </style>

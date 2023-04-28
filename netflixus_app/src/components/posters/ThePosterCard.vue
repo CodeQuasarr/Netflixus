@@ -2,7 +2,7 @@
     <div class="mt-5">
         <div class="d-flex align-items-center justify-content-between">
             <h1 class="h3 fs-6 text-white text-uppercase">{{ posters.genre }}</h1>
-            <RouterLink to="/" class="fs-6 btn btn-sm btn-close-white">Voir plus</RouterLink>
+            <RouterLink :to="{ name: 'MOVIES', query: { genre: posters.genre } }" class="fs-6 btn btn-sm btn-close-white">Voir plus</RouterLink>
         </div>
         <swiper
                 :modules="modules"
