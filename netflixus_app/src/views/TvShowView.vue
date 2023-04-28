@@ -1,66 +1,13 @@
 <template>
-    <div class="container-fluid p-0 m-0">
+    <div style="min-height: 100vh" class="container-fluid p-0 m-0">
         <div class="text-white" v-if="Object.keys(tvShow).length > 0">
             <div class="col-12 movie-banner">
-                <div class="movie-banner-overlay ">
-                    <div class="container d-flex flex-wrap justify-content-center justify-content-around">
-                        <div v-if="tvShow.poster_path"
-                             style="width: 300px; min-height: 450px !important; margin-top: 20px">
-                            <img :src="`https://www.themoviedb.org/t/p/w300_and_h450_bestv2/${tvShow.poster_path}`"
-                                 alt="..." class="img-fluid">
-                        </div>
-                        <div class="col-12 col-lg-8 my-5">
-                            <h1>{{ tvShow.name }}</h1>
-                            <div class="mb-3">
-                                <span>{{ tvShow.first_air_date }}</span>
-                                <span> • </span>
-                                <span v-for="(genre, index) in tvShow.genres" :key="`genre-${index}`">{{ genre.name }}
-                                    <span v-if="index < tvShow.genres.length - 1">,</span>
-                                </span>
-                                <span> • </span>
-                                <span> {{ convertNumberToHours(tvShow.episode_run_time[0]) }} </span>
-                            </div>
-                            <h2 class="h3">Synopsis</h2>
-                            <p class="clamp">{{ tvShow.overview }}</p>
-
-                            <h2 class="h3">Langues</h2>
-                            <span v-for="(langue, index) in tvShow.spoken_languages"
-                                  :key="`langue-${index}`">{{ langue.name }}
-                                    <span v-if="index < tvShow.spoken_languages.length - 1"> • </span>
-                                </span>
-                        </div>
-                    </div>
-                </div>
+                <div class="movie-banner-overlay "></div>
                 <img v-if="tvShow.backdrop_path"
                      :src="`https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces/${tvShow.backdrop_path}`"
-                     alt="..." class="img-fluid">
+                     alt="...">
             </div>
-            <div v-if="tvShow.belongs_to_collection" class="container mt-5">
-                <h2 class="mb-3">Médias</h2>
-                <div class="d-flex align-items-center justify-content-center">
-                    <div v-if="videoKey" class="col">
-                        <iframe width="100%" height="315px" :src="`https://www.youtube.com/embed/${videoKey}`"
-                                frameborder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowfullscreen></iframe>
-                    </div>
-                    <div class="col">
-                        <img class="w-100" height="315"
-                              :src="`https://www.themoviedb.org/t/p/w300_and_h450_bestv2/${tvShow.poster_path}`"
-                              alt="...">
-                    </div>
-                </div>
-            </div>
-            <div>
-                <div class="mt-5">
-                    <h2 class="mb-3">Acteurs</h2>
-                    <div class="container-fluid p-0 m-0 d-flex flex-wrap align-items-center justify-content-center">
-                        <div v-for="cast in tvShow.credits.cast" :key="`cast-${cast.id}`" class="m-3 ">
-                            <PeopleItem :people="cast"/>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <TheMovieInformation :casts="casts" :movie="tvShow" :videoKey="videoKey"/>
         </div>
     </div>
 </template>
@@ -70,54 +17,76 @@ import {defineComponent} from "vue";
 import TvService from "@/helpers/services/Tv.service";
 import {TvShowDetail} from "@/helpers/types/TvShowType";
 import PeopleItem from "@/components/people/PeopleItem.vue";
+import TheMovieInformation from "@/components/TheMovieInformation.vue";
+import {Cast, MovieCredits, MovieDetail} from "@/helpers/types/MovieType";
 
 export default defineComponent({
     name: "TvShowView",
-    components: {PeopleItem},
+    components: {TheMovieInformation},
     data() {
         return {
-            tvShow: {} as TvShowDetail,
+            tvShow: {} as MovieDetail,
             videoKey: "",
+            casts: {} as Cast[],
         };
     },
     methods: {
+        /**
+         * @description Get movie by id from route params
+         *              Get movie, video and credits
+         * @return void
+         */
         init() {
             const tvShowID = this.$route.params.id as string;
             this.getTvShow(tvShowID);
             this.getVideo(tvShowID);
             this.getTvShowCredits(tvShowID);
         },
+
+        /**
+         * @description Get serie by id
+         * @param tvShowID
+         * @return void
+         */
         getTvShow(tvShowID: string) {
             TvService.getTvShowById(tvShowID)
-                .then((response: TvShowDetail) => {
+                .then((response: MovieDetail) => {
                     this.tvShow = response;
                 })
                 .catch((error) => {
                     console.log(error);
                 });
         },
+
+        /**
+         * @description Get movie credits by movie id
+         * @param tvShowID
+         * @return void
+         */
         getVideo(tvShowID: string) {
             TvService.getTvShowVideoKey(tvShowID)
                 .then((response) => {
                     this.videoKey = response;
+                    console.log(response)
                 })
                 .catch((error) => {
                     console.log(error);
                 });
         },
+
+        /**
+         * @description Get movie video by movie id
+         * @param tvShowID
+         * @return void
+         */
         getTvShowCredits(tvShowID: string) {
             TvService.getTvShowCredits(tvShowID)
-                .then((response: any) => {
-                    this.tvShow.credits = response;
+                .then((response: MovieCredits) => {
+                    this.casts = response.cast.slice(0, 12);
                 })
                 .catch((error) => {
                     console.log(error);
                 });
-        },
-        convertNumberToHours(number: number) {
-            const hours = Math.floor(number / 60);
-            const minutes = number % 60;
-            return `${hours}h ${minutes}m`;
         },
     },
     mounted() {

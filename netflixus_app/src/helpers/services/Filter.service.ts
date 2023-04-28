@@ -3,7 +3,11 @@ import {SearchMovie, SearchMovies, SearchPeopleMovie} from "@/helpers/types/Movi
 
 class FilterService {
 
-
+    /**
+     * Search movies by query
+     * @param query
+     * @param currentPage
+     */
     async searchMovies(query: string, currentPage = 1): Promise<SearchMovie[]> {
         const params = new URLSearchParams({
             api_key: process.env.VUE_APP_API_KEY,
@@ -19,6 +23,11 @@ class FilterService {
         }));
     }
 
+    /**
+     * Search tv movies by query
+     * @param query
+     * @param currentPage
+     */
     async searchTvMovies(query: string, currentPage = 1): Promise<SearchMovie[]> {
         const params = new URLSearchParams({
             api_key: process.env.VUE_APP_API_KEY,
@@ -34,6 +43,11 @@ class FilterService {
         }));
     }
 
+    /**
+     * Search people movies by query
+     * @param query
+     * @param currentPage
+     */
     async searchPeopleMovie(query: string, currentPage = 1): Promise<SearchMovie[]> {
         const params = new URLSearchParams({
             api_key: process.env.VUE_APP_API_KEY,
@@ -54,6 +68,11 @@ class FilterService {
         return movies;
     }
 
+    /**
+     * Search movies, tv movies and people movies by query
+     * @param query
+     * @param currentPage
+     */
     async search(query: string, currentPage = 1): Promise<SearchMovies> {
         const movies: SearchMovies = {
             page: currentPage,

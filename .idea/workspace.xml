@@ -5,10 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0a308cec-713d-405b-940e-5f7c2a06049f" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/netflixus_app/src/components/TheMovieInformation.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/netflixus_app/src/components/posters/THeMovieItem.vue" beforeDir="false" afterPath="$PROJECT_DIR$/netflixus_app/src/components/posters/THeMovieItem.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/netflixus_app/src/layouts/NetflixusTemplate.vue" beforeDir="false" afterPath="$PROJECT_DIR$/netflixus_app/src/layouts/NetflixusTemplate.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/netflixus_app/src/store/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/netflixus_app/src/store/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/netflixus_app/src/helpers/services/Filter.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/netflixus_app/src/helpers/services/Filter.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/netflixus_app/src/helpers/services/Tv.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/netflixus_app/src/helpers/services/Tv.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/netflixus_app/src/views/TvShowView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/netflixus_app/src/views/TvShowView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/netflixus_app/src/views/movies/MovieView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/netflixus_app/src/views/movies/MovieView.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,8 +20,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Vue Single File Component" />
         <option value="TypeScript File" />
+        <option value="Vue Single File Component" />
       </list>
     </option>
   </component>

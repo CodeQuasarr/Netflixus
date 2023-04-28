@@ -1,9 +1,8 @@
-import {TvShowDetail, TvShowDetails, TvShowDetailsWithGenre} from "@/helpers/types/TvShowType";
+import {MovieCredits, MovieDetail, MovieDetails, MovieVideo} from "@/helpers/types/MovieType";
 import axiosInstance from "@/axios";
-import {Helpers} from "@/helpers/index.service";
 
 class TvService {
-    async getTvShowsByGenre(currentPage = 1, genre: null | number = null, language: null | string = null, year: null | number = null): Promise<TvShowDetails> {
+    async getTvShowsByGenre(currentPage = 1, genre: null | number = null, language: null | string = null, year: null | number = null): Promise<MovieDetails> {
         const params = new URLSearchParams({
             api_key: process.env.VUE_APP_API_KEY,
             include_adult: 'false'
@@ -24,29 +23,29 @@ class TvService {
         return data;
     }
 
-    async getTvShowsByQuery(query: string): Promise<TvShowDetails> {
-        const {data}: { data: TvShowDetails } = await axiosInstance.get(
+    async getTvShowsByQuery(query: string): Promise<MovieDetails> {
+        const {data}: { data: MovieDetails } = await axiosInstance.get(
             `/search/tv?api_key=${process.env.VUE_APP_API_KEY}&language=fr-FR&include_adult=false&query=${query}`
         );
         return data;
     }
 
-    async getTvShowById(id: string): Promise<TvShowDetail> {
-        const {data}: { data: TvShowDetail } = await axiosInstance.get(
+    async getTvShowById(id: string): Promise<MovieDetail> {
+        const {data}: { data: MovieDetail } = await axiosInstance.get(
             `/tv/${id}?api_key=${process.env.VUE_APP_API_KEY}&language=fr-FR`
         );
         return data;
     }
 
     async getTvShowVideoKey(id: string): Promise<string> {
-        const {data}: { data: TvShowDetails } = await axiosInstance.get(
+        const {data}: { data: MovieVideo } = await axiosInstance.get(
             `/tv/${id}/videos?api_key=${process.env.VUE_APP_API_KEY}&language=en-US`
         );
-        return "";
+        return data.results[0].key;
     }
 
-    async getTvShowCredits(id: string): Promise<string> {
-        const {data}: { data: any } = await axiosInstance.get(
+    async getTvShowCredits(id: string): Promise<MovieCredits> {
+        const {data}: { data: MovieCredits } = await axiosInstance.get(
             `/tv/${id}/credits?api_key=${process.env.VUE_APP_API_KEY}&language=en-US`
         );
         return data;
