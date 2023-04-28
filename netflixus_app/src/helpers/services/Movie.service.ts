@@ -1,4 +1,4 @@
-import {MovieDetail, MovieDetails, MovieDetailsWithGenre, MovieVideo} from "@/helpers/types/MovieType";
+import {MovieCredits, MovieDetail, MovieDetails, MovieDetailsWithGenre, MovieVideo} from "@/helpers/types/MovieType";
 import axiosInstance from "@/axios";
 import {Helpers} from "@/helpers/index.service";
 
@@ -54,12 +54,15 @@ class MovieService {
         return data.results[0].key;
     }
 
-    async getMovieCredits(id: string): Promise<string> {
-        const { data }: { data: any } = await axiosInstance.get(
-            `/movie/${id}/credits?api_key=${process.env.VUE_APP_API_KEY}&language=en-US`
-        );
+    async getMovieCredits(id: string): Promise<MovieCredits> {
+        const params = new URLSearchParams({
+            api_key: process.env.VUE_APP_API_KEY,
+            include_adult: 'false',
+        });
+        const { data }: { data: MovieCredits } = await axiosInstance.get(`/movie/${id}/credits?${params.toString()}`);
         return data;
     }
+
 }
 
 export default new MovieService();

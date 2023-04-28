@@ -2,7 +2,7 @@ import {createRouter, createWebHistory, RouteRecordRaw} from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import LoginView from "@/views/LoginView.vue";
 import NetflixusTemplate from "@/layouts/NetflixusTemplate.vue";
-import MovieView from "@/views/MovieView.vue";
+import MovieView from "@/views/movies/MovieView.vue";
 import IndexView from "@/views/movies/IndexView.vue";
 import TvShowView from "@/views/TvShowView.vue";
 import PeopleView from "@/views/PeopleView.vue";

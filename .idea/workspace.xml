@@ -6,13 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="0a308cec-713d-405b-940e-5f7c2a06049f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/netflixus_app/src/components/TheMovieFilter.vue" beforeDir="false" afterPath="$PROJECT_DIR$/netflixus_app/src/components/TheMovieFilter.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/netflixus_app/src/components/posters/THeMovieItem.vue" beforeDir="false" afterPath="$PROJECT_DIR$/netflixus_app/src/components/posters/THeMovieItem.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/netflixus_app/src/components/posters/TheMoviesCard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/netflixus_app/src/components/posters/TheMoviesCard.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/netflixus_app/src/components/posters/ThePosterCard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/netflixus_app/src/components/posters/ThePosterCard.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/netflixus_app/src/helpers/index.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/netflixus_app/src/helpers/index.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/netflixus_app/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/netflixus_app/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/netflixus_app/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/netflixus_app/src/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/netflixus_app/src/components/people/PeopleItem.vue" beforeDir="false" afterPath="$PROJECT_DIR$/netflixus_app/src/components/people/PeopleItem.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/netflixus_app/src/helpers/services/Movie.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/netflixus_app/src/helpers/services/Movie.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/netflixus_app/src/helpers/types/MovieType.ts" beforeDir="false" afterPath="$PROJECT_DIR$/netflixus_app/src/helpers/types/MovieType.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/netflixus_app/src/router/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/netflixus_app/src/router/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/netflixus_app/src/views/movies/IndexView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/netflixus_app/src/views/movies/IndexView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/netflixus_app/src/store/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/netflixus_app/src/store/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/netflixus_app/src/views/MovieView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/netflixus_app/src/views/movies/MovieView.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,6 +66,7 @@
       <recent name="C:\Users\Sayaris\Documents\vueJs\Netflixus\netflixus_app\src\components\posters" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Sayaris\Documents\vueJs\Netflixus\netflixus_app\src\views\movies" />
       <recent name="C:\Users\Sayaris\Documents\vueJs\Netflixus" />
       <recent name="C:\Users\Sayaris\Documents\vueJs\Netflixus\netflixus_app\src\components\posters" />
     </key>

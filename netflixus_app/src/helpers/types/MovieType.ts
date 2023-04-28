@@ -69,18 +69,6 @@ export type MovieDetail = {
     video: boolean,
     vote_average: number,
     vote_count: number,
-    credits: MovieCredits[],
-}
-
-export type MovieCredits = {
-    cast: Cast[],
-}
-
-export type Cast = {
-    adult: boolean,
-    name: string,
-    profile_path: string,
-    cast_id: number,
 }
 
 export type MovieDetails = {
@@ -130,4 +118,16 @@ export type SearchMovies = {
 
 export type SearchPeopleMovie = {
     known_for: SearchMovie[];
+}
+
+export type Cast = {
+    adult: boolean,
+    name: string,
+    profile_path: string,
+    id: number,
+    cast_id: number,
+}
+
+export type MovieCredits = {
+    cast: Cast[];
 }

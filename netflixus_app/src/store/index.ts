@@ -20,7 +20,6 @@ export default createStore({
     mutations: {
         setSearchBarState(state, value: boolean) {
             state.searchBarState = value;
-            console.log("aaaaaaaaaaabbbbbbbbbbb", state.searchBarState)
         },
         // Posters on the homepage by genres
         setPostersByGenre(state, posters: MovieDetailsWithGenre[]) {

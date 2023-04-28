@@ -18,13 +18,13 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import {People, PeopleDetail} from "@/helpers/types/PeopleType";
+import {Cast} from "@/helpers/types/MovieType";
 
 export default defineComponent({
     name: "PeopleItem",
     props: {
         people: {
-            type: Object as () => People | PeopleDetail,
+            type: Object as () => Cast,
             required: true
         },
     },
